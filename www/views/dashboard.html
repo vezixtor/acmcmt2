@@ -1,14 +1,9 @@
 <!-- Top Navbar-->
-	<div class="navbar">
-	  <div class="navbar-inner">
-		<div class="center sliding">Dashboard</div>
-		<div class="right">
-			<a href="#" class="open-panel link icon-only"><i class="ion ion-navicon"></i></a>
-		</div>
-	  </div>
-	</div>
-
-
+<div class="navbar">
+  <div class="navbar-inner">
+		<div class="center sliding">Agenda</div>
+  </div>
+</div>
 <div class="pages">
   <div data-page="dashboard" class="page">
 
@@ -16,7 +11,7 @@
 		<div id="bottomtabbar" class="toolbar tabbar tabbar-labels">
 			<div class="toolbar-inner">
 				<a href="#tab-1" class="tab-link active">
-					<i class="f7-icons">calendar</i>
+					<i class="f7-icons">today</i>
 					<span class="tabbar-label">Calendario</span>
 				</a>
 				<a href="#tab-2" class="tab-link">
@@ -24,35 +19,56 @@
 					<span class="tabbar-label">Lojas</span>
 				</a>
 				<a href="#tab-3" class="tab-link">
-					<i class="f7-icons">person</i>
+					<i class="f7-icons">document_text_fill</i>
 					<span class="tabbar-label">Perfil</span>
 				</a>
 			</div>
 		</div>
 
 		<!-- Tabs -->
-		<div>
-			<div class="tabs ">
-				<!-- Calendario -->
-				<div id="tab-1" class="page-content tab infinite-scroll active">
-					<div class="content-block-title">Inline with custom toolbar</div>
-					<div class="content-block">
-					  <div style="padding:0; margin-right:-15px; width:auto" class="content-block-inner">
-					    <div id="calendar-inline-container"></div>
-					  </div>
-					</div>
+		<div class="page-content tabs">
+
+			<!-- Calendário -->
+			<div id="tab-1" class="tab active">
+				<div class="content-block-title">Calendário</div>
+				<div class="content-block">
+				  <div style="padding:0; margin-right:-15px; width:auto" class="content-block-inner">
+				    <div id="calendar-inline-container"></div>
+				  </div>
 				</div>
 
-				<!-- Lojas -->
-				<div id="tab-2" class="page-content tab">
-					<div class="content-block-title">Dados da conta</div>
-				</div>
-
-				<!-- Perfil -->
-				<div id="tab-3" class="page-content tab">
-					<div class="content-block-title">Dados da conta</div>
+				<div class="content-block-title">Eventos</div>
+				<div class="list-block media-list">
+				  <ul id="lista-eventos"></ul>
 				</div>
 			</div>
+
+			<!-- Lojas -->
+			<div id="tab-2" class="tab">
+				<!-- Search Bar -->
+		    <form class="searchbar">
+		        <div class="searchbar-input">
+		            <input type="search" placeholder="Search">
+		            <a href="#" class="searchbar-clear"></a>
+		        </div>
+		        <a href="#" class="searchbar-cancel">Cancel</a>
+		    </form>
+
+		    <!-- Search Bar overlay-->
+		    <div class="searchbar-overlay"></div>
+
+				<div class="content-block-title">Lojas</div>
+				<div class="list-block media-list list-block-search searchbar-found">
+				  <ul id="lista-loja"></ul>
+				</div>
+			</div>
+
+			<!-- Perfil -->
+			<div id="tab-3" class="tab">
+				<div class="content-block-title">Nothing at here</div>
+			</div>
+
 		</div>
+
   </div>
 </div>
