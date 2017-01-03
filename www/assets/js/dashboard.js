@@ -63,6 +63,7 @@ myApp.onPageInit('dashboard', function (page) {
     console.log('tab:Perfil');
   });
 });
+
 function getLojas() {
   $$.getJSON(apiUrl + 'stores.php', function (data) {
     console.log(data);
@@ -77,10 +78,10 @@ function getLojas() {
     myApp.hideIndicator();
   });
 }
-function insertStore(store) {
+function insertStore(store) { //TODO ONDE PAROU!!!
   var layoutDaLista =
     '<li>' +
-      '<a href="views/store.html" class="item-link item-content">' +
+      '<a href="views/store.html?id='++'" class="item-link item-content">' +
         '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
         '<div class="item-inner">' +
           '<div class="item-title-row">' +
