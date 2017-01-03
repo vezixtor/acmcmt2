@@ -7,16 +7,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- Your app title -->
-    <title>Agenda</title>
+    <title>Agenda Maçom</title>
 
     <link rel="stylesheet" href="assets/lib/framework7/css/framework7-icons.css">
     <!-- Path to Framework7 iOS CSS theme styles-->
     <link rel="stylesheet" href="assets/lib/framework7/css/framework7.ios.min.css">
     <!-- Path to Framework7 iOS related color styles -->
     <link rel="stylesheet" href="assets/lib/framework7/css/framework7.ios.colors.min.css">
-    <!-- Path to your custom app styles
+    <!-- Path to your custom app styles-->
 
-    <link rel="stylesheet" href="path/to/my-app.css">-->
+    <link rel="stylesheet" href="assets/css/adjusts.css">
     <link rel="stylesheet" href="assets/lib/font-awesome-4.7.0/css/font-awesome.min.css">
 
   </head>
@@ -26,18 +26,7 @@
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
 
-    <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
-      <div class="content-block">
-        <p>MENU</p>
-        <p><a href="views/register.html" class="panel-close">registrar</a></p>
 
-        <div class="content-block-title">Exemplos</div>
-        <p><a href="views/form.html" class="panel-close">Formulario</a></p>
-        <p><a href="views/services.html" class="panel-close">Page</a></p>
-        <p><a href="#" class="panel-close">Fechar Menu</a></p>
-      </div>
-    </div>
 
     <!-- Views -->
     <div class="views">
@@ -50,13 +39,6 @@
             <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
             <div class="left"></div>
             <div class="center sliding">Agenda</div>
-            <div class="right">
-              <!--
-                Right link contains only icon - additional "icon-only" class
-                Additional "open-panel" class tells app to open panel when we click on this link
-              -->
-              <a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i></a>
-            </div>
           </div>
         </div>
 
@@ -71,9 +53,9 @@
                   <ul>
                     <li class="item-content">
                       <div class="item-inner">
-                        <div class="item-title label">Usuario</div>
+                        <div class="item-title label">Email</div>
                         <div class="item-input">
-                          <input type="text" name="username" placeholder="Your username">
+                          <input type="text" name="email" placeholder="email">
                         </div>
                       </div>
                     </li>
@@ -81,7 +63,7 @@
                       <div class="item-inner">
                         <div class="item-title label">Senha</div>
                         <div class="item-input">
-                          <input type="password" name="password" placeholder="Your password">
+                          <input type="password" name="password" placeholder="senha">
                         </div>
                       </div>
                     </li>
@@ -89,10 +71,9 @@
                 </div>
                 <div class="list-block">
                   <ul class="list-block-label">
-                    <li><a href="#" id="login" class="button button-round active color-green">Entrar</a></li>
+                    <li><a href="#" id="login" class="button button-round active color-blue">Entrar</a></li>
                   </ul>
                   <div class="list-block-label">
-                    <p>Não tem conta ainda seu pobre ?.</p>
                     <p><a href="views/register.html" class="button button-round active color-gray">Registrar</a></p>
                   </div>
                 </div>
@@ -112,7 +93,11 @@
     <script type="text/javascript">
         app.initialize();
     </script>
+    <script type="text/javascript" src="assets/lib/jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="assets/lib/jquery/jquery.mask.js"></script>
     <script type="text/javascript" src="assets/js/app7.js"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
+    <script type="text/javascript" src="assets/js/register.js"></script>
+    <script type="text/javascript" src="assets/js/dashboard.js"></script>
   </body>
 </html>
