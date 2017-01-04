@@ -50,7 +50,6 @@ myApp.onPageInit('dashboard', function (page) {
 
   //LOJAS
   $$('#tab-2').on('tab:show', function () {
-    myApp.showIndicator();
     var mySearchbar = myApp.searchbar('.searchbar', {
       searchList: '.list-block-search',
       searchIn: '.item-title',
@@ -66,19 +65,12 @@ myApp.onPageInit('dashboard', function (page) {
 });
 
 function getLojas() {
-  $$.getJSON(apiUrl + 'stores.php', function (data) {
-    console.log(data);
-    $$('#lista-loja').empty();
-    $$.each(data, function (index, store) {
-      //console.log(randomBetween(1, 10));
-      insertStore(store);
-    });
-  });
-
-  $$(document).on('ajax:complete', function (e) {
-    myApp.hideIndicator();
+  var storeData = JSON.parse(storage.getItem('stores'));
+  $$.each(storeData, function (index, store) {
+    insertStore(store);
   });
 }
+
 function insertStore(store) { //TODO ONDE PAROU!!!
   var layoutDaLista =
     '<li>' +

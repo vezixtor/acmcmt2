@@ -1,5 +1,4 @@
 myApp.onPageInit('register', function (page) {
-  console.log("Qualquer coisa");
   //Colocando mask em campos
   $('#CIM').mask('000000');
 
@@ -15,13 +14,13 @@ myApp.onPageInit('register', function (page) {
   $('#phone').mask(SPMaskBehavior, spOptions);
 
   $$('#register').on('click', function() {
-  	var storedData = myApp.formGetData('register-form');
+  	var storedData = myApp.formToData('#register-form');
   	if(storedData) {
   		console.log(JSON.stringify(storedData));
       register(JSON.stringify(storedData));
   	}
   	else {
-  		console.log('Erro')
+  		console.log(JSON.stringify(storedData))
   	}
   });
 });
