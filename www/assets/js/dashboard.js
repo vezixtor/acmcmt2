@@ -71,7 +71,7 @@ function getLojas() {
   });
 }
 
-function insertStore(store) { //TODO ONDE PAROU!!!
+function insertStore(store) {
   var layoutDaLista =
     '<li>' +
       '<a href="views/store.html?id='+ store.id +'" class="item-link item-content">' +
