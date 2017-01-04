@@ -15,6 +15,7 @@ var mainView = myApp.addView('.view-main', {
 //API
 var apiUrl = 'http://www.kashew.tecnologia.ws/agendamacom/';
 
-$$('.panel-close').on('click', function (e) {
-  myApp.closePanel();
+//store.html
+myApp.onPageInit('store', function (page) {
+  console.log(page.query);
 });

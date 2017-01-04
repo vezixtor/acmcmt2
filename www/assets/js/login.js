@@ -1,5 +1,15 @@
 var storage = window.localStorage;
 
+$$('#login').on('click', function() {
+	var storedData = myApp.formGetData('login-form');
+	if(storedData) {
+		console.log(JSON.stringify(storedData));
+    login(JSON.stringify(storedData));
+	}
+	else {
+		console.log('Erro')
+	}
+});
 
 function login(storedData){
   $$.post(apiUrl + 'login.php', storedData, function (data) {
@@ -13,6 +23,7 @@ function login(storedData){
         title: 'ERRO',
         message: objeto.message
       });
+	  mainView.router.loadPage('views/dashboard.html');
     };
   },
     function (xhr, status){console.log(xhr, status)}
@@ -23,14 +34,3 @@ function login(storedData){
   });
 
 }
-
-$$('#login').on('click', function() {
-	var storedData = myApp.formGetData('login-form');
-	if(storedData) {
-		console.log(JSON.stringify(storedData));
-    login(JSON.stringify(storedData));
-	}
-	else {
-		console.log('Erro')
-	}
-});
