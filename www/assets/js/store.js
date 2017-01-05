@@ -18,7 +18,7 @@ myApp.onPageInit('store', function (page) {
       $$('#itemFundation').text(store.fundation);
       $$('#itemHour').text(store.hour);
       $$('#itemId').text(store.id);
-      $$('#itemmobile').text(store.mobile);
+      $$('#itemMobile').text(store.mobile);
       $$('#itemName').text(store.name);
       $$('#itemNumber').text(store.number);
       $$('#itemPhone').text(store.phone);
@@ -26,11 +26,79 @@ myApp.onPageInit('store', function (page) {
       $$('#itemUf').text(store.uf);
       $$('#itemVeneravel').text(store.veneravel);
 
-      if(store.number == ''){
-        $$('#itemAddressNumber').text(store.address);
+      if(store.address == ''){
+        $$('#itemAddressNumber').text('');
+        $$('#divAddressNumber').addClass('noDisplay');
       }else{
-        $$('#itemAddressNumber').text(store.address + ', ' + store.number);
+        if(store.number == ''){
+          $$('#itemAddressNumber').text(store.address);
+        }else{
+          $$('#itemAddressNumber').text(store.address + ', ' + store.number);
+        }
       }
+
+      if(store.cep == '' && store.city == ''){
+        $$('#div2A').text('');
+        $$('#div2B').text('');
+        $$('#divCEP').addClass('noDisplay');
+      }else if(store.cep == '' && !store.city == ''){
+        $$('#div2A').text(store.city + ' - ' + store.uf);
+        $$('#div2B').text('');
+      }else{
+        $$('#div2A').text('CEP: ' + store.cep);
+        $$('#div2B').text(store.city + ' - ' + store.uf);
+      }
+
+      if(store.veneravel == ''){
+        $$('#itemVeneravelFull').text('');
+        $$('#divVenravel').addClass('noDisplay');
+      }else{
+        $$('#itemVeneravelFull').text('Venerável: ' + store.veneravel);
+      }
+
+      if(store.email == ''){
+        $$('#itemEmailFull').text('');
+        $$('#divEmail').addClass('noDisplay');
+      }else{
+        $$('#itemEmailFull').text('Email: ' + store.email);
+      }
+
+      if(store.phone == '' && store.cml == ''){
+        $$('#div5A').text('');
+        $$('#div5B').text('');
+        $$('#divPhones').addClass('noDisplay');
+      }else if(!store.phone == '' && store.cml == ''){
+        $$('#div5A').text('Telefone: ' + store.phone);
+        $$('#div5B').text('');
+      }else if(store.phone == '' && !store.cml == ''){
+        $$('#div5A').text('CML: ' + store.cml);
+        $$('#div5B').text('');
+      }else{
+        $$('#div5A').text('Telefone: ' + store.phone);
+        $$('#div5B').text('CML: ' + store.cml);
+      }
+
+      if(store.mobile == ''){
+        $$('#itemMobileFull').text('');
+        $$('#divMobile').addClass('noDisplay');
+      }else{
+        $$('#itemMobileFull').text('Celular: ' + store.mobile);
+      }
+
+      if(store.rito == ''){
+        $$('#itemRitoFull').text('');
+        $$('#divRITO').addClass('noDisplay');
+      }else{
+        $$('#itemRitoFull').text('RITO: ' + store.rito);
+      }
+
+      if(store.day == '' || store.hour == ''){
+        $$('#itemDate').text('');
+        $$('#divDate').addClass('noDisplay');
+      }else{
+        $$('#itemDate').text('Dia: ' + store.day + ' à partir das ' + store.hour);
+      }
+
     }
   });
 
