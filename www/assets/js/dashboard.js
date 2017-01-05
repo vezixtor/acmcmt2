@@ -7,6 +7,26 @@ var eventos =  [
   new Date(2017, 0, 1)
 ];
 myApp.onPageInit('dashboard', function (page) {
+  $$('#settings').hide();
+  $$('#logout').hide();
+
+  //PERFIL
+  var storeData = JSON.parse(storage.getItem('user'));
+  console.log(storeData);
+  $$('#userName').text(storeData.name);
+  $$('#userEmail').text(storeData.email);
+  $$('#userCim').text(storeData.cim);
+  $$('#userBirth').text(storeData.birth);
+  $$('#userPhone').text(storeData.phone);
+  $$('#userPosition').text(storeData.position);
+  $$('#userProfession').text(storeData.profession);
+  $$('#userStore').text(storeData.store);
+  $$('#userType').text(storeData.type);
+
+  $$('#userEmailFull').text('Email: ' + storeData.email);
+  $$('#userCimFull').text('CIM: ' + storeData.cim);
+  $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
+  $$('#userPhoneFull').text('Celular: ' + storeData.phone);
 
   //CALENDARIO
   var calendarInline = myApp.calendar({
@@ -45,11 +65,14 @@ myApp.onPageInit('dashboard', function (page) {
   });
 
   $$('#tab-1').on('tab:show', function () {
-    console.log('tab:Calendário');
+    $$('#settings').hide();
+    $$('#logout').hide();
   });
 
   //LOJAS
   $$('#tab-2').on('tab:show', function () {
+    $$('#settings').hide();
+    $$('#logout').hide();
     var mySearchbar = myApp.searchbar('.searchbar', {
       searchList: '.list-block-search',
       searchIn: '.item-title',
@@ -60,7 +83,15 @@ myApp.onPageInit('dashboard', function (page) {
 
   //PERFIL
   $$('#tab-3').on('tab:show', function () {
-    console.log('tab:Perfil');
+    $$('#settings').show();
+    $$('#logout').show();
+
+  });
+  $$('#settings').on('click', function (){
+    settings();
+  });
+  $$('#logout').on('click', function (){
+    logout();
   });
 });
 
@@ -91,4 +122,11 @@ function insertStore(store) {
 function randomBetween(x, y) {
   //Generate random number between two numbers in JavaScript TODO
   return Math.floor(Math.random() * y) + x;
+}
+
+function logout(){
+  console.log("logout");
+}
+function settings(){
+  console.log("settings");
 }

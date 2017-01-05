@@ -1,8 +1,4 @@
 myApp.onPageInit('store', function (page) {
-  myApp.showIndicator();
-  setTimeout(function () {
-      myApp.hideIndicator();
-  }, 1000);
 
   var storeData = JSON.parse(storage.getItem('stores'));
   var id = page.query.id;

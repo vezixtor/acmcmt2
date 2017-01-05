@@ -13,9 +13,9 @@ $$('#login').on('click', function() {
 
 function login(storedData){
   $$.post(apiUrl + 'login.php', storedData, function (data) {
-    storage.setItem('user', data) // Pass a key name and its value to add or update that key.
     var objeto = JSON.parse(data);
     if(objeto.success == 1){
+			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
       mainView.router.loadPage('views/dashboard.html');
     }else{
       myApp.addNotification({
