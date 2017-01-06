@@ -1,5 +1,5 @@
 //dashboard.html
-
+var calendarInline;
 var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
 var semanaNomes = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 var eventos =  [
@@ -10,6 +10,7 @@ myApp.onPageInit('dashboard', function (page) {
   $$('#settings').hide();
   $$('#logout').hide();
 
+<<<<<<< HEAD
   //PERFIL
   var storeData = JSON.parse(storage.getItem('user'));
 
@@ -28,42 +29,10 @@ myApp.onPageInit('dashboard', function (page) {
   $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
   $$('#userPhoneFull').text('Celular: ' + storeData.phone);
 
+=======
+>>>>>>> origin/master
   //CALENDARIO
-  var calendarInline = myApp.calendar({
-    container: '#calendar-inline-container',
-    value: [new Date()],
-    weekHeader: true,
-    dayNamesShort: semanaNomes,
-    events: eventos,
-    toolbarTemplate:
-        '<div class="toolbar calendar-custom-toolbar">' +
-            '<div class="toolbar-inner">' +
-                '<div class="left">' +
-                    '<a href="#" class="link icon-only"><i class="icon icon-back"></i></a>' +
-                '</div>' +
-                '<div class="center"></div>' +
-                '<div class="right">' +
-                    '<a href="#" class="link icon-only"><i class="icon icon-forward"></i></a>' +
-                '</div>' +
-            '</div>' +
-        '</div>',
-    onOpen: function (p) {
-        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-        $$('.calendar-custom-toolbar .left .link').on('click', function () {
-            calendarInline.prevMonth();
-        });
-        $$('.calendar-custom-toolbar .right .link').on('click', function () {
-            calendarInline.nextMonth();
-        });
-    },
-    onMonthYearChangeStart: function (p) {
-        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-    },
-    onDayClick: function (p, dayContainer, year, month, day) {
-      console.log('onDayClick');
-    }
-  });
-
+  createCalendar();
   $$('#tab-1').on('tab:show', function () {
     $$('#settings').hide();
     $$('#logout').hide();
@@ -82,10 +51,10 @@ myApp.onPageInit('dashboard', function (page) {
   });
 
   //PERFIL
+  setProfile();
   $$('#tab-3').on('tab:show', function () {
     $$('#settings').show();
     $$('#logout').show();
-
   });
   $$('#settings').on('click', function (){
     settings();
@@ -94,6 +63,24 @@ myApp.onPageInit('dashboard', function (page) {
     logout();
   });
 });
+function setProfile() {
+	var storeData = JSON.parse(storage.getItem('user'));
+  console.log(storeData);
+  $$('#userName').text(storeData.name);
+  $$('#userEmail').text(storeData.email);
+  $$('#userCim').text(storeData.cim);
+  $$('#userBirth').text(storeData.birth);
+  $$('#userPhone').text(storeData.phone);
+  $$('#userPosition').text(storeData.position);
+  $$('#userProfession').text(storeData.profession);
+  $$('#userStore').text(storeData.store);
+  $$('#userType').text(storeData.type);
+
+  $$('#userEmailFull').text('Email: ' + storeData.email);
+  $$('#userCimFull').text('CIM: ' + storeData.cim);
+  $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
+  $$('#userPhoneFull').text('Celular: ' + storeData.phone);
+}
 
 function getLojas() {
   var storeData = JSON.parse(storage.getItem('stores'));
@@ -130,4 +117,84 @@ function logout(){
 }
 function settings(){
   console.log("settings");
+}
+
+
+function createCalendar() {
+	calendarInline = myApp.calendar({
+    container: '#calendar-inline-container',
+    value: [new Date()],
+    weekHeader: true,
+    dayNamesShort: semanaNomes,
+    events: setEvents(),
+    toolbarTemplate:
+        '<div class="toolbar calendar-custom-toolbar">' +
+            '<div class="toolbar-inner">' +
+                '<div class="left">' +
+                    '<a href="#" class="link icon-only"><i class="icon icon-back"></i></a>' +
+                '</div>' +
+                '<div class="center"></div>' +
+                '<div class="right">' +
+                    '<a href="#" class="link icon-only"><i class="icon icon-forward"></i></a>' +
+                '</div>' +
+            '</div>' +
+        '</div>',
+    onOpen: function (p) {
+        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+        $$('.calendar-custom-toolbar .left .link').on('click', function () {
+            calendarInline.prevMonth();
+        });
+        $$('.calendar-custom-toolbar .right .link').on('click', function () {
+            calendarInline.nextMonth();
+        });
+    },
+    onMonthYearChangeStart: function (p) {
+        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+    },
+    onDayClick: function (p, dayContainer, year, month, day) {
+      $$('#lista-eventos').empty();
+      if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
+        var _month = parseInt(month) + 1;
+        if(_month < 10) month = '0'+_month;
+        printEvents(year, month, day);
+      }
+    }
+  });
+}
+function printEvents(year, month, day) {
+  var lookingFor = year + '-' + month + '-' + day;
+  var eventsData = JSON.parse(storage.getItem('events'));
+	$$.each(eventsData, function (index, evento) {
+		if(lookingFor == evento.date) {
+      addEvent(evento);
+    }
+	});
+}
+function addEvent(store) {
+  var layoutDaLista =
+    '<li>' +
+      '<a href="views/store.html?id='+ store.id +'" class="item-link item-content">' +
+        '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
+        '<div class="item-inner">' +
+          '<div class="item-title-row">' +
+            '<div class="item-title">'+ store.title +'</div>' +
+            '<div class="item-after">'+ store.hour +'</div>' +
+          '</div>' +
+          '<div class="item-subtitle">'+ store.event_type + '</div>' +
+          '<div class="item-text">'+ store.store +'</div>' +
+        '</div>' +
+      '</a>' +
+    '</li>';
+  $$('#lista-eventos').append(layoutDaLista);
+}
+function setEvents() {
+  var eventsData = JSON.parse(storage.getItem('events'));
+	var events = []; console.log(eventsData);
+	$$.each(eventsData, function (index, evento) {
+		events[index] = fixEventDate(evento.date);
+	});
+	return events;
+}
+function fixEventDate(date) {
+	return new Date(date.substring(0, 4), parseInt(date.substring(5, 7)) - 1, date.substring(8, 10));
 }
