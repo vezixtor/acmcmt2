@@ -130,16 +130,45 @@ function createCalendar() {
         $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
     },
     onDayClick: function (p, dayContainer, year, month, day) {
-      console.log($$(this).hasClass('calendar-day-has-events'));
-      console.log(year, month, day);
+      $$('#lista-eventos').empty();
+      if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
+        var _month = parseInt(month) + 1;
+        if(_month < 10) month = '0'+_month;
+        printEvents(year, month, day);
+      }
     }
   });
 }
-
+function printEvents(year, month, day) {
+  var lookingFor = year + '-' + month + '-' + day;
+  var eventsData = JSON.parse(storage.getItem('events'));
+	$$.each(eventsData, function (index, evento) {
+		if(lookingFor == evento.date) {
+      addEvent(evento);
+    }
+	});
+}
+function addEvent(store) {
+  var layoutDaLista =
+    '<li>' +
+      '<a href="views/store.html?id='+ store.id +'" class="item-link item-content">' +
+        '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
+        '<div class="item-inner">' +
+          '<div class="item-title-row">' +
+            '<div class="item-title">'+ store.title +'</div>' +
+            '<div class="item-after">'+ store.hour +'</div>' +
+          '</div>' +
+          '<div class="item-subtitle">'+ store.event_type + '</div>' +
+          '<div class="item-text">'+ store.store +'</div>' +
+        '</div>' +
+      '</a>' +
+    '</li>';
+  $$('#lista-eventos').append(layoutDaLista);
+}
 function setEvents() {
-  var storeData = JSON.parse(storage.getItem('events'));
-	var events = [];
-	$$.each(storeData, function (index, evento) {
+  var eventsData = JSON.parse(storage.getItem('events'));
+	var events = []; console.log(eventsData);
+	$$.each(eventsData, function (index, evento) {
 		events[index] = fixEventDate(evento.date);
 	});
 	return events;
