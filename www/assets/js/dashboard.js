@@ -12,7 +12,7 @@ myApp.onPageInit('dashboard', function (page) {
 
   //PERFIL
   var storeData = JSON.parse(storage.getItem('user'));
-  console.log(storeData);
+
   $$('#userName').text(storeData.name);
   $$('#userEmail').text(storeData.email);
   $$('#userCim').text(storeData.cim);
@@ -126,6 +126,7 @@ function randomBetween(x, y) {
 
 function logout(){
   console.log("logout");
+  //storage.clear();
 }
 function settings(){
   console.log("settings");

@@ -3,7 +3,6 @@ var storage = window.localStorage;
 $$('#login').on('click', function() {
 	var storedData = myApp.formToData('#login-form');
 	if(storedData) {
-		console.log(JSON.stringify(storedData));
     login(JSON.stringify(storedData));
 	}
 	else {
