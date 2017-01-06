@@ -32,4 +32,7 @@ function login(storedData){
 		storage.setItem('stores', JSON.stringify(data))
 	});
 
+	$$.getJSON(apiUrl + 'events.php', function (data) {
+		storage.setItem('events', JSON.stringify(data));
+	});
 }

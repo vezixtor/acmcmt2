@@ -1,5 +1,5 @@
 //dashboard.html
-
+var calendarInline;
 var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
 var semanaNomes = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 var eventos =  [
@@ -10,60 +10,8 @@ myApp.onPageInit('dashboard', function (page) {
   $$('#settings').hide();
   $$('#logout').hide();
 
-  //PERFIL
-  var storeData = JSON.parse(storage.getItem('user'));
-  console.log(storeData);
-  $$('#userName').text(storeData.name);
-  $$('#userEmail').text(storeData.email);
-  $$('#userCim').text(storeData.cim);
-  $$('#userBirth').text(storeData.birth);
-  $$('#userPhone').text(storeData.phone);
-  $$('#userPosition').text(storeData.position);
-  $$('#userProfession').text(storeData.profession);
-  $$('#userStore').text(storeData.store);
-  $$('#userType').text(storeData.type);
-
-  $$('#userEmailFull').text('Email: ' + storeData.email);
-  $$('#userCimFull').text('CIM: ' + storeData.cim);
-  $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
-  $$('#userPhoneFull').text('Celular: ' + storeData.phone);
-
   //CALENDARIO
-  var calendarInline = myApp.calendar({
-    container: '#calendar-inline-container',
-    value: [new Date()],
-    weekHeader: true,
-    dayNamesShort: semanaNomes,
-    events: eventos,
-    toolbarTemplate:
-        '<div class="toolbar calendar-custom-toolbar">' +
-            '<div class="toolbar-inner">' +
-                '<div class="left">' +
-                    '<a href="#" class="link icon-only"><i class="icon icon-back"></i></a>' +
-                '</div>' +
-                '<div class="center"></div>' +
-                '<div class="right">' +
-                    '<a href="#" class="link icon-only"><i class="icon icon-forward"></i></a>' +
-                '</div>' +
-            '</div>' +
-        '</div>',
-    onOpen: function (p) {
-        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-        $$('.calendar-custom-toolbar .left .link').on('click', function () {
-            calendarInline.prevMonth();
-        });
-        $$('.calendar-custom-toolbar .right .link').on('click', function () {
-            calendarInline.nextMonth();
-        });
-    },
-    onMonthYearChangeStart: function (p) {
-        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-    },
-    onDayClick: function (p, dayContainer, year, month, day) {
-      console.log('onDayClick');
-    }
-  });
-
+  createCalendar();
   $$('#tab-1').on('tab:show', function () {
     $$('#settings').hide();
     $$('#logout').hide();
@@ -82,10 +30,10 @@ myApp.onPageInit('dashboard', function (page) {
   });
 
   //PERFIL
+  setProfile();
   $$('#tab-3').on('tab:show', function () {
     $$('#settings').show();
     $$('#logout').show();
-
   });
   $$('#settings').on('click', function (){
     settings();
@@ -94,6 +42,24 @@ myApp.onPageInit('dashboard', function (page) {
     logout();
   });
 });
+function setProfile() {
+	var storeData = JSON.parse(storage.getItem('user'));
+  console.log(storeData);
+  $$('#userName').text(storeData.name);
+  $$('#userEmail').text(storeData.email);
+  $$('#userCim').text(storeData.cim);
+  $$('#userBirth').text(storeData.birth);
+  $$('#userPhone').text(storeData.phone);
+  $$('#userPosition').text(storeData.position);
+  $$('#userProfession').text(storeData.profession);
+  $$('#userStore').text(storeData.store);
+  $$('#userType').text(storeData.type);
+
+  $$('#userEmailFull').text('Email: ' + storeData.email);
+  $$('#userCimFull').text('CIM: ' + storeData.cim);
+  $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
+  $$('#userPhoneFull').text('Celular: ' + storeData.phone);
+}
 
 function getLojas() {
   var storeData = JSON.parse(storage.getItem('stores'));
@@ -129,4 +95,55 @@ function logout(){
 }
 function settings(){
   console.log("settings");
+}
+
+
+function createCalendar() {
+	calendarInline = myApp.calendar({
+    container: '#calendar-inline-container',
+    value: [new Date()],
+    weekHeader: true,
+    dayNamesShort: semanaNomes,
+    events: setEvents(),
+    toolbarTemplate:
+        '<div class="toolbar calendar-custom-toolbar">' +
+            '<div class="toolbar-inner">' +
+                '<div class="left">' +
+                    '<a href="#" class="link icon-only"><i class="icon icon-back"></i></a>' +
+                '</div>' +
+                '<div class="center"></div>' +
+                '<div class="right">' +
+                    '<a href="#" class="link icon-only"><i class="icon icon-forward"></i></a>' +
+                '</div>' +
+            '</div>' +
+        '</div>',
+    onOpen: function (p) {
+        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+        $$('.calendar-custom-toolbar .left .link').on('click', function () {
+            calendarInline.prevMonth();
+        });
+        $$('.calendar-custom-toolbar .right .link').on('click', function () {
+            calendarInline.nextMonth();
+        });
+    },
+    onMonthYearChangeStart: function (p) {
+        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+    },
+    onDayClick: function (p, dayContainer, year, month, day) {
+      console.log($$(this).hasClass('calendar-day-has-events'));
+      console.log(year, month, day);
+    }
+  });
+}
+
+function setEvents() {
+  var storeData = JSON.parse(storage.getItem('events'));
+	var events = [];
+	$$.each(storeData, function (index, evento) {
+		events[index] = fixEventDate(evento.date);
+	});
+	return events;
+}
+function fixEventDate(date) {
+	return new Date(date.substring(0, 4), parseInt(date.substring(5, 7)) - 1, date.substring(8, 10));
 }
