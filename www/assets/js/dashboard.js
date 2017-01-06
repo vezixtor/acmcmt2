@@ -9,8 +9,6 @@ var eventos =  [
 myApp.onPageInit('dashboard', function (page) {
   $$('#settings').hide();
   $$('#logout').hide();
-
-<<<<<<< HEAD
   //PERFIL
   var storeData = JSON.parse(storage.getItem('user'));
 
@@ -28,16 +26,12 @@ myApp.onPageInit('dashboard', function (page) {
   $$('#userCimFull').text('CIM: ' + storeData.cim);
   $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
   $$('#userPhoneFull').text('Celular: ' + storeData.phone);
-
-=======
->>>>>>> origin/master
   //CALENDARIO
   createCalendar();
   $$('#tab-1').on('tab:show', function () {
     $$('#settings').hide();
     $$('#logout').hide();
   });
-
   //LOJAS
   $$('#tab-2').on('tab:show', function () {
     $$('#settings').hide();
@@ -49,7 +43,6 @@ myApp.onPageInit('dashboard', function (page) {
     });
     getLojas();
   });
-
   //PERFIL
   setProfile();
   $$('#tab-3').on('tab:show', function () {
@@ -65,7 +58,6 @@ myApp.onPageInit('dashboard', function (page) {
 });
 function setProfile() {
 	var storeData = JSON.parse(storage.getItem('user'));
-  console.log(storeData);
   $$('#userName').text(storeData.name);
   $$('#userEmail').text(storeData.email);
   $$('#userCim').text(storeData.cim);
@@ -118,7 +110,6 @@ function logout(){
 function settings(){
   console.log("settings");
 }
-
 
 function createCalendar() {
 	calendarInline = myApp.calendar({
