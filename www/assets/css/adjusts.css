@@ -5,3 +5,36 @@
 .noDisplay{
   display: none !important;
 }
+
+.picker-calendar-day.picker-calendar-day-has-events span:after {
+    background: #666666 !important;
+}
+
+.rectangle{
+	width: 5px;
+	height: 20px;
+  display: inline-block;
+}
+.rectangle-store{
+  background: #C0392B;
+}
+.rectangle-personal{
+  background: #34495E;
+}
+.rectangle-holiday{
+  background: #F1C40F;
+}
+
+.events-adjust{
+  text-align: center;
+  margin-top: -20px;
+}
+
+.events-span{
+  vertical-align: 25%;
+  padding-left: 20px;
+}
+
+.eventlist-adjust{
+  margin-top: 10px !important;
+}
