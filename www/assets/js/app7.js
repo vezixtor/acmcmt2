@@ -10,7 +10,17 @@ var $$ = Dom7;
 app.initialize();
 
 // Add view
-var mainView = myApp.addView('#tab1', {
+var calendarView = myApp.addView('#tab1', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
+var storesView = myApp.addView('#tab2', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
+var profileView = myApp.addView('#tab3', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
   dynamicNavbar: true
 });
@@ -18,22 +28,3 @@ var mainView = myApp.addView('#tab1', {
 //API
 var apiUrl = 'http://www.kashew.tecnologia.ws/agendamacom/';
 var storage = window.localStorage;
-
-$$('.botao-qualquer').on('click', function () {
-  //myApp.loginScreen();
-  //$$('.some-view').show();
-	$$('.tabs-animated-wrap').hide();
-			$$('.toolbar').hide();
-});
-
-/*myApp.onPageInit('login-screen', function (page) { console.log('opa');
-  var pageContainer = $$(page.container);
-  pageContainer.find('.list-button').on('click', function () {
-    var username = pageContainer.find('input[name="username"]').val();
-    var password = pageContainer.find('input[name="password"]').val();
-    // Handle username and password
-    myApp.alert('Username: ' + username + ', Password: ' + password, function () {
-      mainView.goBack();
-    });
-  })
-});*/

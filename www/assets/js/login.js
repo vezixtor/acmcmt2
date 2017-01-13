@@ -18,7 +18,7 @@ function login(storedData){
     var objeto = JSON.parse(data);
     if(objeto.success == 1){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
-      mainView.router.back();
+      calendarView.router.back();
 			$$('.toolbar').show();
     }else{
 			iziToast.show({
@@ -34,7 +34,7 @@ function login(storedData){
         title: 'ERRO',
         message: objeto.message
       });*/
-	  mainView.router.back();
+	  calendarView.router.back();
 		$$('.toolbar').show();
     };
   },

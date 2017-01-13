@@ -54,7 +54,7 @@ var app = {
 //navigator.splashscreen.show();
 window.setTimeout(function () {
   //myApp.loginScreen();
-  mainView.router.loadPage('views/login.html');
+  calendarView.router.loadPage('views/login.html');
     $$('.views').removeAttr('style');
   //navigator.splashscreen.hide();
 }, 2500);

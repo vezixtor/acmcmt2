@@ -99,3 +99,7 @@ myApp.onPageInit('store', function (page) {
   });
 
 });
+
+$$('#calendar').on('click', function() {
+  myApp.showTab('#tab1');
+});
