@@ -7,7 +7,16 @@ var myApp = new Framework7({
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
+//navigator.splashscreen.show();
+window.setTimeout(function () {
+  //myApp.loginScreen();
+  mainView.router.loadPage('views/login.html');
+  $$('.views').removeAttr('style');
+  navigator.splashscreen.hide();
+}, 2500);
+
 app.initialize();
+
 // Add view
 var mainView = myApp.addView('#tab1', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
@@ -16,6 +25,7 @@ var mainView = myApp.addView('#tab1', {
 
 //API
 var apiUrl = 'http://www.kashew.tecnologia.ws/agendamacom/';
+var storage = window.localStorage;
 
 $$('.botao-qualquer').on('click', function () {
   //myApp.loginScreen();
@@ -24,7 +34,7 @@ $$('.botao-qualquer').on('click', function () {
 			$$('.toolbar').hide();
 });
 
-myApp.onPageInit('login-screen', function (page) { console.log('opa');
+/*myApp.onPageInit('login-screen', function (page) { console.log('opa');
   var pageContainer = $$(page.container);
   pageContainer.find('.list-button').on('click', function () {
     var username = pageContainer.find('input[name="username"]').val();
@@ -33,5 +43,5 @@ myApp.onPageInit('login-screen', function (page) { console.log('opa');
     myApp.alert('Username: ' + username + ', Password: ' + password, function () {
       mainView.goBack();
     });
-  });
-});
+  })
+});*/

@@ -1,21 +1,23 @@
-var storage = window.localStorage;
+myApp.onPageInit('login', function (page) {
 
-$$('#login').on('click', function() {
-	var storedData = myApp.formToData('#login-form');
-	if(storedData) {
-    login(JSON.stringify(storedData));
-	}
-	else {
-		console.log(JSON.stringify(storedData));
-	}
+	$$('#login').on('click', function() {
+		var storedData = myApp.formToData('#login-form');
+		if(storedData) {
+	    login(JSON.stringify(storedData));
+		}
+		else {
+			console.log(JSON.stringify(storedData));
+		}
+	});
 });
 
 function login(storedData){
+
   $$.post(apiUrl + 'login.php', storedData, function (data) {
     var objeto = JSON.parse(data);
     if(objeto.success == 1){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
-      mainView.router.loadPage('views/dashboard.html');
+      mainView.router.back();
     }else{
 			iziToast.show({
     		title: 'ERRO',
@@ -30,7 +32,7 @@ function login(storedData){
         title: 'ERRO',
         message: objeto.message
       });*/
-	  mainView.router.loadPage('views/dashboard.html');
+	  mainView.router.back();
     };
   },
     function (xhr, status){console.log(xhr, status)}
