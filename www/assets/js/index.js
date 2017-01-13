@@ -45,7 +45,14 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-        */
+        console.log('Received Event: ' + id);*/
+        
+		navigator.splashscreen.show();
+		window.setTimeout(function () {
+			myApp.loginScreen();
+			$$('.views').removeAttr('style');
+			navigator.splashscreen.hide();
+		}, 10000);
     }
 };
+

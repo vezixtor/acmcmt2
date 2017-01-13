@@ -26,71 +26,137 @@
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
 
-    <!-- Views -->
-    <div class="views">
-      <!-- Your main view, should have "view-main" class -->
-      <div class="view view-main">
+  	<!-- Tabs, now tabs wrapper is "views" -->
+  	<div class="views" style="z-index: 0;">
+      <div class="tabs-animated-wrap">
+      	<div class=" tabs toolbar-fixed">
+      	  <!-- Tab 1 - View 1, active by default -->
+      	  <div id="tab1" class="view tab active">
+        		<div class="navbar">
+        		  <div class="navbar-inner">
+        			<div class="center">View 1</div>
+        		  </div>
+        		</div>
+        		<div class="pages navbar-fixed">
+        		  <div data-page="home-1" class="page">
+          			<div class="page-content">
+                  <div class="content-block">
+                    <p><a href="#" class="open-login-screen">Open Login Screen</a></p>
+                    <p><a href="views/login-screen-page.html" class="open-login-screen">Open page with Login Screen</a></p>
+                    <p><a href="#" class="botao-qualquer">Um botão qualquer</a></p>
+                  </div>
+          			</div>
+        		  </div>
+        		</div>
+      	  </div>
+      	  <!-- Tab 2 - View 2 -->
+      	  <div id="tab2" class="view tab">
+        		<div class="navbar">
+        		  <div class="navbar-inner">
+        			<div class="center">View 2</div>
+        		  </div>
+        		</div>
+        		<div class="pages navbar-fixed">
+        		  <div data-page="home-2" class="page">
+        			<div class="page-content">
+        			  <div class="content-block">
+        				<p>This is view 2</p>
+        			  </div>
+        			</div>
+        		  </div>
+        		</div>
+      	  </div>
+      	  <!-- Tab 2 - View 3 -->
+      	  <div id="tab3" class="view tab">
+        		<div class="navbar">
+        		  <div class="navbar-inner">
+        			<div class="center">View 3</div>
+        		  </div>
+        		</div>
+        		<div class="pages navbar-fixed">
+        		  <div data-page="home-3" class="page">
+        			<div class="page-content">
+        			  <div class="content-block">
+        				<p>This is view 3</p>
+        			  </div>
+        			</div>
+        		  </div>
+        		</div>
+      	  </div>
+    	</div>
+  	  </div>
+  	  <!-- Tab bar with tab links -->
+  	  <div class="toolbar tabbar tabbar-labels">
+    		<div class="toolbar-inner">
+    		  <a href="#tab1" class="tab-link active">
+      			<i class="f7-icons">today</i>
+      			<span class="tabbar-label">Calendario</span>
+    		  </a>
+    		  <a href="#tab2" class="tab-link">
+      			<i class="f7-icons">list</i>
+      			<span class="tabbar-label">Lojas</span>
+    		  </a>
+    		  <a href="#tab3" class="tab-link">
+      			<i class="f7-icons">person</i>
+      			<span class="tabbar-label">Perfil</span>
+    		  </a>
+    	  </div>
+      </div>
 
-        <!-- Top Navbar-->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-            <div class="left"></div>
-            <div class="center sliding">Agenda</div>
-          </div>
-        </div>
-
-        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-          <!-- Page, "data-page" contains page name -->
-          <div data-page="index" class="page">
+      <!-- Should be a direct child of BODY -->
+      <div data-page="login-screen" class="login-screen">
+        <!-- Default view-page layout -->
+        <div class="view">
+          <div class="page">
+            <!-- page-content has additional login-screen content -->
             <div class="page-content login-screen-content">
-              <div class="login-screen-title">Agenda</div>
-              <form id="login-form" class="list-block">
+              <div class="login-screen-title">My App</div>
+              <!-- Login form -->
+              <form>
+                <div class="list-block">
                   <ul>
                     <li class="item-content">
                       <div class="item-inner">
-                        <div class="item-title label">Email</div>
+                        <div class="item-title label">Username</div>
                         <div class="item-input">
-                          <input type="text" name="email" placeholder="email">
+                          <input type="text" name="username" placeholder="Username">
                         </div>
                       </div>
                     </li>
                     <li class="item-content">
                       <div class="item-inner">
-                        <div class="item-title label">Senha</div>
+                        <div class="item-title label">Password</div>
                         <div class="item-input">
-                          <input type="password" name="password" placeholder="senha">
+                          <input type="password" name="password" placeholder="Password">
                         </div>
                       </div>
                     </li>
                   </ul>
+                </div>
                 <div class="list-block">
-                  <ul class="list-block-label">
-                    <li><a href="#" id="login" class="button button-round active">Entrar</a></li>
+                  <ul>
+                    <li>
+                      <a href="#" class="item-link list-button">Sign In</a>
+                    </li>
                   </ul>
-                  <div class="list-block-label">
-                    <p><a href="views/register.html" class="button button-round active color-gray">Registrar</a></p>
-                  </div>
+                  <div class="list-block-label">Some text with login information.</div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
-    <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="assets/lib/framework7/js/framework7.min.js"></script>
-    <!-- Path to your app js
-    <script type="text/javascript" src="path/to/my-app.js"></script>-->
+
+    <!-- Cordova/Phonegap JS -->
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="assets/js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+    <!-- Library JS -->
+    <script type="text/javascript" src="assets/lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="assets/lib/jquery/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="assets/lib/jquery/jquery.mask.js"></script>
+    <!-- My JS -->
+    <script type="text/javascript" src="assets/js/index.js"></script>
     <script type="text/javascript" src="assets/js/app7.js"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
     <script type="text/javascript" src="assets/js/register.js"></script>
