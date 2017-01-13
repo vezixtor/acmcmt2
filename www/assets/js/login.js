@@ -1,4 +1,5 @@
 myApp.onPageInit('login', function (page) {
+	$$('.toolbar').hide();
 
 	$$('#login').on('click', function() {
 		var storedData = myApp.formToData('#login-form');
@@ -18,6 +19,7 @@ function login(storedData){
     if(objeto.success == 1){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
       mainView.router.back();
+			$$('.toolbar').show();
     }else{
 			iziToast.show({
     		title: 'ERRO',
@@ -33,6 +35,7 @@ function login(storedData){
         message: objeto.message
       });*/
 	  mainView.router.back();
+		$$('.toolbar').show();
     };
   },
     function (xhr, status){console.log(xhr, status)}

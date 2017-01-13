@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -49,3 +50,11 @@ var app = {
 
   }
 };
+
+//navigator.splashscreen.show();
+window.setTimeout(function () {
+  //myApp.loginScreen();
+  mainView.router.loadPage('views/login.html');
+    $$('.views').removeAttr('style');
+  //navigator.splashscreen.hide();
+}, 2500);

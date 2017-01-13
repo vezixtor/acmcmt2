@@ -7,14 +7,6 @@ var myApp = new Framework7({
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
-//navigator.splashscreen.show();
-window.setTimeout(function () {
-  //myApp.loginScreen();
-  mainView.router.loadPage('views/login.html');
-  $$('.views').removeAttr('style');
-  navigator.splashscreen.hide();
-}, 2500);
-
 app.initialize();
 
 // Add view
