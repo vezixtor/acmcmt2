@@ -34,10 +34,19 @@ function register(storedData){
         mainView.router.back();
       });
     }else{
-      myApp.addNotification({
+      iziToast.error({
+    		title: 'ERRO',
+    		message: objeto.message,
+        backgroundColor: '#EFEFEF',
+        titleColor: 'red',
+        timeout: 2000,
+        animateInside: true,
+        position: 'center'
+			});
+      /*myApp.addNotification({
         title: 'ERRO',
         message: objeto.message
-      });
+      });*/
     };
   },
     function (xhr, status){console.log(xhr, status)}

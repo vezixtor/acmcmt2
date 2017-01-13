@@ -17,10 +17,19 @@ function login(storedData){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
       mainView.router.loadPage('views/dashboard.html');
     }else{
-      myApp.addNotification({
+			iziToast.show({
+    		title: 'ERRO',
+    		message: objeto.message,
+        backgroundColor: '#EFEFEF',
+        titleColor: 'red',
+        timeout: 1500,
+        animateInside: true,
+        position: 'center'
+			});
+      /*myApp.addNotification({
         title: 'ERRO',
         message: objeto.message
-      });
+      });*/
 	  mainView.router.loadPage('views/dashboard.html');
     };
   },
