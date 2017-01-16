@@ -1,7 +1,7 @@
 {
-  "name": "phonegap-template-hello-world",
+  "name": "Agenda Maçom",
   "version": "4.0.3",
-  "description": "> A Hello World template built with PhoneGap",
+  "description": "> Private app built with PhoneGap",
   "repository": {
     "type": "git",
     "url": "https://github.com/phonegap/phonegap-app-hello-world.git"

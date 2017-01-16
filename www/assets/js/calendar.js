@@ -45,3 +45,38 @@ function createCalendar() {
     }
   });
 }
+
+function printEvents(year, month, day) {
+  var lookingFor = year + '-' + month + '-' + day;
+  var eventsData = JSON.parse(storage.getItem('events'));
+	$$.each(eventsData, function (index, evento) {
+		if(lookingFor == evento.date) {
+      addEvent(evento);
+    }
+	});
+}
+function addEvent(store) {
+  var layoutDaLista =
+    '<li>' +
+      '<a href="views/store.html?id='+ store.id +'" class="item-link item-content">' +
+        '<div class="item-inner">' +
+          '<div class="item-title-row">' +
+            '<div class="item-title">'+ store.title +'</div>' +
+          '</div>' +
+          '<div class="item-subtitle">'+ store.event_type + '</div>' +
+        '</div>' +
+      '</a>' +
+    '</li>';
+  $$('#lista-eventos').append(layoutDaLista);
+}
+function setEvents() {
+  var eventsData = JSON.parse(storage.getItem('events'));
+	var events = [];
+	$$.each(eventsData, function (index, evento) {
+		events[index] = fixEventDate(evento.date);
+	});
+	return events;
+}
+function fixEventDate(date) {
+	return new Date(date.substring(0, 4), parseInt(date.substring(5, 7)) - 1, date.substring(8, 10));
+}

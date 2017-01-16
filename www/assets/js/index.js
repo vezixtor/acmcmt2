@@ -1,22 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -51,10 +32,41 @@ var app = {
   }
 };
 
-//navigator.splashscreen.show();
+// Initialize app
+var myApp = new Framework7({
+  fastClicks: false,
+  swipeBackPage: false
+});
+
+// If we need to use custom DOM library, let's save it to $$ variable:
+var $$ = Dom7;
+
+app.initialize();
+
+// Add view
+var calendarView = myApp.addView('#tab1', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
+var storesView = myApp.addView('#tab2', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
+var profileView = myApp.addView('#tab3', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
+//API
+var apiUrl = 'http://www.kashew.tecnologia.ws/agendamacom/';
+var storage = window.localStorage;
+
+/* navigator.splashscreen.show();
 window.setTimeout(function () {
   //myApp.loginScreen();
   calendarView.router.loadPage('views/login.html');
     $$('.views').removeAttr('style');
   //navigator.splashscreen.hide();
-}, 2500);
+}, 2500); */
