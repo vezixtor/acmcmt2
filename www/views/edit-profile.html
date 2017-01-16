@@ -1,0 +1,84 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding">Editar Perfil</div>
+  </div>
+</div>
+
+<div data-page="editProfile" class="page">
+  <div class="page-content">
+    <form id="register-form" class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Nome</div>
+                <div class="item-input">
+                  <input type="text" id="userName" name="name"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Email</div>
+                <div class="item-input">
+                  <input type="email" id="userEmail" name="email"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Nascimento</div>
+                <div class="item-input">
+                  <input type="date" name="birth" id="userBirth"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Celular</div>
+                <div class="item-input">
+                  <input type="tel" name="phone" id="phone"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Profissão</div>
+                <div class="item-input">
+                  <input type="text" name="profession"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Posição</div>
+                <div class="item-input">
+                  <select name="position">
+                    <option value="Aprendiz">Aprendiz</option>
+                    <option value="Acompanhante">Acompanhante</option>
+                    <option value="Mestre">Mestre</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      <div class="list-block">
+        <ul class="list-block-label">
+          <p><a href="#" id="updateProfile" class="button button-round active">Atualizar</a></p>
+        </ul>
+      </div>
+    </form>
+  </div>
+</div>

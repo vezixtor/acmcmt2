@@ -1,5 +1,13 @@
 myApp.onPageInit('store', function (page) {
 
+  $$('#calendarLink').on('click', function() {
+    myApp.showTab('#tab1');
+  });
+
+  $$('#editStore').on('click', function() {
+    storesView.router.loadPage('views/edit-store.html');
+  });
+
   var storeData = JSON.parse(storage.getItem('stores'));
   var id = page.query.id;
 
@@ -98,8 +106,4 @@ myApp.onPageInit('store', function (page) {
     }
   });
 
-});
-
-$$('#calendar').on('click', function() {
-  myApp.showTab('#tab1');
 });

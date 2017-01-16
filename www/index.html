@@ -96,7 +96,7 @@
         		<div class="navbar">
         		  <div class="navbar-inner">
                 <div class="left">
-                  <a href="#" class="link" id="settings"> <i class="f7-icons">gear_fill</i></a>
+                  <a href="#" class="open-popover link icon-only"> <i class="f7-icons">gear_fill</i></a>
                 </div>
         			  <div class="center">Perfil</div>
                 <div class="right">
@@ -159,8 +159,23 @@
       </div>
     </div>
 
+    <!-- //////////////////////////////////////// -->
+    <div class="popover popover-menu" style="width: auto">
+      <div class="popover-angle"></div>
+      <div class="popover-inner">
+        <div class="popover-view view">
+          <div class="list-block">
+            <ul>
+              <li><a href="#" id="editProfile" class="list-button item-link">Editar Perfil</a></li>
+              <li id="adminStore"><a href="#" id="createStore" class="list-button item-link">Nova Loja</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Cordova/Phonegap JS -->
-    <script type="text/javascript" src="cordova.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <!-- Library JS -->
     <script type="text/javascript" src="assets/lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="assets/lib/jquery/jquery-2.2.4.min.js"></script>
