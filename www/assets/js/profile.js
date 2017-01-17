@@ -1,7 +1,7 @@
 myApp.onPageBack('editProfile', function (page) {
 	myApp.showToolbar('.toolbar');
 });
-myApp.onPageBack('editProfile', function (page) {
+myApp.onPageBack('createStore', function (page) {
 	myApp.showToolbar('.toolbar');
 });
 
@@ -42,17 +42,23 @@ $$('.popover').on('open', function (e) {
 //TODO: Edit Profile
 myApp.onPageInit('editProfile', function(page){
 	var storeData = JSON.parse(storage.getItem('user'));
-  $$('#userName').val(storeData.name);
-  $$('#userEmail').val(storeData.email);
-  $$('#userCim').val(storeData.cim);
-  $$('#userBirth').val(dateAdjust(storeData.birth));
-  $$('#userPhone').val(storeData.phone);
-  $$('#userPosition').val(storeData.position);
-  $$('#userProfession').val(storeData.profession);
-  $$('#userStore').val(storeData.store);
-  $$('#userType').val(storeData.type);
+  $$('#editName').val(storeData.name);
+  $$('#editEmail').val(storeData.email);
+  $$('#editCim').val(storeData.cim);
+  $$('#editBirth').val(dateAdjust(storeData.birth));
+  $$('#editPhone').val(storeData.phone);
+  $$('#editPosition').val(storeData.position);
+  $$('#editProfession').val(storeData.profession);
+  $$('#editStore').val(storeData.store);
+  $$('#editType').val(storeData.type);
 });
 
 function dateAdjust(data){
 	return data.substring(6,10) + '-' + data.substring(3,5) + '-' + data.substring(0,2);
 }
+
+//TODO: Create store
+myApp.onPageInit('createStore', function(page){
+	var storeData = JSON.parse(storage.getItem('store'));
+	$('#createHour').mask('00:00');
+});

@@ -1,16 +1,206 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Atualizar Loja</div>
+    <div class="center sliding">Editar Loja</div>
   </div>
 </div>
 
-<div data-page="editProfile" class="page">
+<div data-page="editStore" class="page">
   <div class="page-content">
-    <div class="content-block">
-      <p><a href="#" class="create-about">Create About Popover</a></p>
-      <p><a href="#" class="create-links">Create Links Popover</a></p>
-      <p>Praesent urna mi, sodales ac dolor vitae, dictum mattis sem. Mauris a dui faucibus, condimentum arcu quis, porta felis. Sed at metus arcu. Maecenas sodales tellus risus, id <a href="#" class="create-about">About</a> nibh iaculis quis. Suspendisse dignissim ante lobortis, molestie nibh id, pharetra risus. Proin blandit neque nec nibh scelerisque, eu vulputate ipsum malesuada. Phasellus sapien diam, fermentum eget ornare in, <a href="#" class="create-links">Links</a> rutrum vel justo. Integer accumsan posuere quam.</p>
-    </div>
+    <form id="editStore-form" class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Nome</div>
+                <div class="item-input">
+                  <input type="text" name="name" id="editName"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Data Fundação</div>
+                <div class="item-input">
+                  <input type="date" name="fundation" id="editFundation"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Venerável</div>
+                <div class="item-input">
+                  <input type="text" name="veneravel" id="editVeneravel"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Email</div>
+                <div class="item-input">
+                  <input type="email" name="email" id="editEmail"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Telefone</div>
+                <div class="item-input">
+                  <input type="text" name="phone" id="editPhone"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Celular</div>
+                <div class="item-input">
+                  <input type="text" name="mobile" id="editMobile"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">CML</div>
+                <div class="item-input">
+                  <input type="text" name="cml" id="editCml"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Endereço</div>
+                <div class="item-input">
+                  <input type="text" name="address" id="editAddress"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Número</div>
+                <div class="item-input">
+                    <input type="number" name="number" id="editNumber"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">CEP</div>
+                <div class="item-input">
+                    <input type="number" name="cep" id="editCEP"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Estado</div>
+                <div class="item-input">
+                  <select name="estate" id="editUf">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Cidade</div>
+                <div class="item-input">
+                  <input type="text" name="city" id="editCity"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">RITO</div>
+                <div class="item-input">
+                  <input type="text" name="rito" id="editRito"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Dia</div>
+                <div class="item-input">
+                  <select name="day" id="editDay">
+                    <option value="Segunda-Feira">Segunda-Feira</option>
+                    <option value="Terça-Feira">Terça-Feira</option>
+                    <option value="Querta-Feira">Quarta-Feira</option>
+                    <option value="Quinta-Feira">Quinta-Feira</option>
+                    <option value="Sexta-Feira">Sexta-Feira</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Hora</div>
+                <div class="item-input">
+                  <input type="text" name="hour" id="editHour"/>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      <div class="list-block">
+        <ul class="list-block-label">
+          <p><a href="#" id="editStore" class="button button-round active">Salvar</a></p>
+        </ul>
+      </div>
+    </form>
   </div>
 </div>

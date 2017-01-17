@@ -1,16 +1,206 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Cadastrar Loja</div>
+    <div class="center sliding">Editar Perfil</div>
   </div>
 </div>
 
-<div data-page="editProfile" class="page">
+<div data-page="createStore" class="page">
   <div class="page-content">
-    <div class="content-block">
-      <p><a href="#" class="create-about">Create About Popover</a></p>
-      <p><a href="#" class="create-links">Create Links Popover</a></p>
-      <p>Praesent urna mi, sodales ac dolor vitae, dictum mattis sem. Mauris a dui faucibus, condimentum arcu quis, porta felis. Sed at metus arcu. Maecenas sodales tellus risus, id <a href="#" class="create-about">About</a> nibh iaculis quis. Suspendisse dignissim ante lobortis, molestie nibh id, pharetra risus. Proin blandit neque nec nibh scelerisque, eu vulputate ipsum malesuada. Phasellus sapien diam, fermentum eget ornare in, <a href="#" class="create-links">Links</a> rutrum vel justo. Integer accumsan posuere quam.</p>
-    </div>
+    <form id="createStore-form" class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Nome</div>
+                <div class="item-input">
+                  <input type="text" name="name" id="createName"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Data Fundação</div>
+                <div class="item-input">
+                  <input type="date" name="fundation" id="createFundation"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Venerável</div>
+                <div class="item-input">
+                  <input type="text" name="veneravel" id="createVeneravel"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Email</div>
+                <div class="item-input">
+                  <input type="email" name="email" id="createEmail"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Telefone</div>
+                <div class="item-input">
+                  <input type="tel" name="phone" id="createPhone"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Celular</div>
+                <div class="item-input">
+                  <input type="tel" name="mobile" id="createMobile"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">CML</div>
+                <div class="item-input">
+                  <input type="tel" name="cml" id="createCML"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Endereço</div>
+                <div class="item-input">
+                  <input type="text" name="address" id="createAddress"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Número</div>
+                <div class="item-input">
+                    <input type="number" name="number" id="createNumber"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">CEP</div>
+                <div class="item-input">
+                    <input type="number" name="cep" id="createCEP"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Estado</div>
+                <div class="item-input">
+                  <select name="estate">
+                    <option>MT</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Cidade</div>
+                <div class="item-input">
+                  <input type="text" name="city" id="createCity"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">RITO</div>
+                <div class="item-input">
+                  <input type="text" name="rito" id="createRito"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Dia</div>
+                <div class="item-input">
+                  <select name="day">
+                    <option>Segunda-Feira</option>
+                    <option>Terça-Feira</option>
+                    <option>Quarta-Feira</option>
+                    <option>Quinta-Feira</option>
+                    <option>Sexta-Feira</option>
+                    <option>Sábado</option>
+                    <option>Domingo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Hora</div>
+                <div class="item-input">
+                  <input type="text" name="hour" id="createHour"/>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      <div class="list-block">
+        <ul class="list-block-label">
+          <p><a href="#" id="createStore" class="button button-round active">Salvar</a></p>
+        </ul>
+      </div>
+    </form>
   </div>
 </div>
