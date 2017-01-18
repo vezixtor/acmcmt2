@@ -80,3 +80,12 @@ function setEvents() {
 function fixEventDate(date) {
 	return new Date(date.substring(0, 4), parseInt(date.substring(5, 7)) - 1, date.substring(8, 10));
 }
+
+//TODO New events
+$$('#newEvent').on('click', function() {
+	//calendarView.router.loadPage('views/create-event.html');
+});
+
+function clearEvents(){
+	calendarInline.open();
+}

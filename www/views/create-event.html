@@ -1,20 +1,20 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Editar Loja</div>
+    <div class="center sliding">Novo Evento</div>
   </div>
 </div>
 
-<div data-page="editStore" class="page">
+<div data-page="createEvent" class="page">
   <div class="page-content">
-    <form id="editStore-form" class="list-block">
+    <form id="createEvent-form" class="list-block">
         <ul>
           <li>
             <div class="item-content">
               <div class="item-inner">
-                <div class="item-title label">Nome</div>
+                <div class="item-title label">Título</div>
                 <div class="item-input">
-                  <input type="text" name="name" id="editName"/>
+                  <input type="text" name="title" id="createTitle"/>
                 </div>
               </div>
             </div>
@@ -24,7 +24,7 @@
               <div class="item-inner">
                 <div class="item-title label">Data Fundação</div>
                 <div class="item-input">
-                  <input type="date" name="fundation" id="editFundation" placeholder=""/>
+                  <input type="date" name="fundation" id="createFundation"/>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
               <div class="item-inner">
                 <div class="item-title label">Venerável</div>
                 <div class="item-input">
-                  <input type="text" name="veneravel" id="editVeneravel"/>
+                  <input type="text" name="veneravel" id="createVeneravel"/>
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@
               <div class="item-inner">
                 <div class="item-title label">Email</div>
                 <div class="item-input">
-                  <input type="email" name="email" id="editEmail"/>
+                  <input type="email" name="email" id="createEmail"/>
                 </div>
               </div>
             </div>
@@ -54,7 +54,7 @@
               <div class="item-inner">
                 <div class="item-title label">Telefone</div>
                 <div class="item-input">
-                  <input type="text" name="phone" id="editPhone"/>
+                  <input type="tel" name="phone" id="createPhone"/>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@
               <div class="item-inner">
                 <div class="item-title label">Celular</div>
                 <div class="item-input">
-                  <input type="text" name="mobile" id="editMobile"/>
+                  <input type="tel" name="mobile" id="createMobile"/>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@
               <div class="item-inner">
                 <div class="item-title label">CML</div>
                 <div class="item-input">
-                  <input type="text" name="cml" id="editCml"/>
+                  <input type="tel" name="cml" id="createCML"/>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@
               <div class="item-inner">
                 <div class="item-title label">Endereço</div>
                 <div class="item-input">
-                  <input type="text" name="address" id="editAddress"/>
+                  <input type="text" name="address" id="createAddress"/>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
               <div class="item-inner">
                 <div class="item-title label">Número</div>
                 <div class="item-input">
-                    <input type="number" name="number" id="editNumber"/>
+                    <input type="number" name="number" id="createNumber"/>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@
               <div class="item-inner">
                 <div class="item-title label">CEP</div>
                 <div class="item-input">
-                    <input type="number" name="cep" id="editCEP"/>
+                    <input type="number" name="cep" id="createCEP"/>
                 </div>
               </div>
             </div>
@@ -114,34 +114,34 @@
               <div class="item-inner">
                 <div class="item-title label">Estado</div>
                 <div class="item-input">
-                  <select name="estate" id="editUf">
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
+                  <select name="estate">
+                    <option>MT</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
                   </select>
                 </div>
               </div>
@@ -152,7 +152,7 @@
               <div class="item-inner">
                 <div class="item-title label">Cidade</div>
                 <div class="item-input">
-                  <input type="text" name="city" id="editCity"/>
+                  <input type="text" name="city" id="createCity"/>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@
               <div class="item-inner">
                 <div class="item-title label">RITO</div>
                 <div class="item-input">
-                  <input type="text" name="rito" id="editRito"/>
+                  <input type="text" name="rito" id="createRito"/>
                 </div>
               </div>
             </div>
@@ -172,14 +172,14 @@
               <div class="item-inner">
                 <div class="item-title label">Dia</div>
                 <div class="item-input">
-                  <select name="day" id="editDay">
-                    <option value="Segunda-Feira">Segunda-Feira</option>
-                    <option value="Terça-Feira">Terça-Feira</option>
-                    <option value="Querta-Feira">Quarta-Feira</option>
-                    <option value="Quinta-Feira">Quinta-Feira</option>
-                    <option value="Sexta-Feira">Sexta-Feira</option>
-                    <option value="Sábado">Sábado</option>
-                    <option value="Domingo">Domingo</option>
+                  <select name="day">
+                    <option>Segunda-Feira</option>
+                    <option>Terça-Feira</option>
+                    <option>Quarta-Feira</option>
+                    <option>Quinta-Feira</option>
+                    <option>Sexta-Feira</option>
+                    <option>Sábado</option>
+                    <option>Domingo</option>
                   </select>
                 </div>
               </div>
@@ -190,7 +190,7 @@
               <div class="item-inner">
                 <div class="item-title label">Hora</div>
                 <div class="item-input">
-                  <input type="text" name="hour" id="editHour"/>
+                  <input type="text" name="hour" id="createHour"/>
                 </div>
               </div>
             </div>
@@ -198,7 +198,7 @@
         </ul>
       <div class="list-block">
         <ul class="list-block-label">
-          <p><a href="#" id="editStore" class="button button-round active">Salvar</a></p>
+          <p><a href="#" id="createEvent" class="button button-round active">Salvar</a></p>
         </ul>
       </div>
     </form>

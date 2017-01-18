@@ -2,6 +2,7 @@ myApp.onPageInit('store', function (page) {
   var id = page.query.id;
 
   $$('#calendarLink').on('click', function() {
+    storesView.router.back();
     myApp.showTab('#tab1');
   });
 
@@ -134,7 +135,7 @@ myApp.onPageInit('editStore', function (page) {
       $$('#editUf').val(store.uf);
       $$('#editVeneravel').val(store.veneravel);
 
-      console.log(store.uf);
+      console.log(store.id);
     }
   });
 });
