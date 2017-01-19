@@ -7,6 +7,7 @@ getLojas();
 
 
 function getLojas() {
+  $$('#lista-loja').empty();
   var storeData = JSON.parse(storage.getItem('stores'));
   $$.each(storeData, function (index, store) {
     insertStore(store);

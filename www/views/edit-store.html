@@ -24,7 +24,7 @@
               <div class="item-inner">
                 <div class="item-title label">Data Fundação</div>
                 <div class="item-input">
-                  <input type="date" name="fundation" id="editFundation" placeholder=""/>
+                  <input type="date" name="fundation" id="editFundation"/>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@
               <div class="item-inner">
                 <div class="item-title label">CEP</div>
                 <div class="item-input">
-                    <input type="number" name="cep" id="editCEP"/>
+                    <input type="text" name="cep" id="editCep"/>
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@
               <div class="item-inner">
                 <div class="item-title label">Estado</div>
                 <div class="item-input">
-                  <select name="estate" id="editUf">
+                  <select name="uf" id="editUf">
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
                     <option value="AP">AP</option>
@@ -188,6 +188,27 @@
           <li>
             <div class="item-content">
               <div class="item-inner">
+                <div class="item-title label">Frequência</div>
+                <div class="item-input">
+                  <select name="week" id="editWeek">
+                    <option value="0">Todas as semanas</option>
+                    <option value="1">Apenas na primeira semana</option>
+                    <option value="2">Apenas na segunda semana</option>
+                    <option value="3">Apenas na terceira semana</option>
+                    <option value="4">Apenas na última semana</option>
+                    <option value="1,2">Na primeira e na segunda semana</option>
+                    <option value="1,3">Na primeira e na terceira semana</option>
+                    <option value="2,3">Na segunda e na terceira semana</option>
+                    <option value="-1">Exceto na primeira semana</option>
+                    <option value="-4">Exceto na última semana</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
                 <div class="item-title label">Hora</div>
                 <div class="item-input">
                   <input type="text" name="hour" id="editHour"/>
@@ -198,7 +219,7 @@
         </ul>
       <div class="list-block">
         <ul class="list-block-label">
-          <p><a href="#" id="editStore" class="button button-round active">Salvar</a></p>
+          <p><a href="#" id="updateStore" class="button button-round active">Salvar</a></p>
         </ul>
       </div>
     </form>
