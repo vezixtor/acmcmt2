@@ -37,6 +37,7 @@ myApp.onPageBeforeAnimation('store', function (page) {
       $$('#itemRito').text(store.rito);
       $$('#itemUf').text(store.uf);
       $$('#itemVeneravel').text(store.veneravel);
+      $$('#itemWeek').text(store.week);
 
       if(store.address == ''){
         $$('#itemAddressNumber').text('');
@@ -104,11 +105,41 @@ myApp.onPageBeforeAnimation('store', function (page) {
         $$('#itemRitoFull').text('RITO: ' + store.rito);
       }
 
+      if(store.day == 'Domingo' || store.day == 'Sábado'){
+        var pri = 'o primeiro ';
+        var seg = ' segundo ';
+        var ter = ' terceiro ';
+        var ult = 'o último ';
+      }else{
+        var pri = 'a primeira ';
+        var seg = ' segunda ';
+        var ter = ' terceira ';
+        var ult = 'a última ';
+      }
+
       if(store.day == '' || store.hour == ''){
         $$('#itemDate').text('');
         $$('#divDate').addClass('noDisplay');
-      }else{
+      }else if(store.week == '0'){
         $$('#itemDate').text('Dia: ' + store.day + ' à partir das ' + store.hour);
+      }else if(store.week == '1'){
+        $$('#itemDate').text('Dia: N' + pri + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '2'){
+        $$('#itemDate').text('Dia: Na' + seg + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '3'){
+        $$('#itemDate').text('Dia: Na' + ter + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '4'){
+        $$('#itemDate').text('Dia: N' + ult + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '1,2'){
+        $$('#itemDate').text('Dia: N'+ pri + 'e' + seg + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '1,3'){
+        $$('#itemDate').text('Dia: N'+ pri + 'e' + ter + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '2,3'){
+        $$('#itemDate').text('Dia: Na'+ seg + 'e' + ter + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '-1'){
+        $$('#itemDate').text('Dia: Exceto n' + pri + store.day + ' do mês à partir das ' + store.hour);
+      }else if(store.week == '-4'){
+        $$('#itemDate').text('Dia: Exceto n' + ult + store.day + ' do mês à partir das ' + store.hour);
       }
 
     }

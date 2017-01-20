@@ -5,24 +5,34 @@ myApp.onPageBack('createStore', function (page) {
 	myApp.showToolbar('.toolbar');
 });
 
+
+var userData = JSON.parse(storage.getItem('user'));
+var id = userData.id;
+console.log(id);
+
 setProfile();
 
 function setProfile() {
-	var storeData = JSON.parse(storage.getItem('user'));
-  $$('#userName').text(storeData.name);
-  $$('#userEmail').text(storeData.email);
-  $$('#userCim').text(storeData.cim);
-  $$('#userBirth').text(storeData.birth);
-  $$('#userPhone').text(storeData.phone);
-  $$('#userPosition').text(storeData.position);
-  $$('#userProfession').text(storeData.profession);
-  $$('#userStore').text(storeData.store);
-  $$('#userType').text(storeData.type);
+	$$.each(userData, function (index, data) {
+		console.log(data.id);
+    if(id == data.id){
+		  $$('#userName').text(userData.name);
+		  $$('#userEmail').text(userData.email);
+		  $$('#userCim').text(userData.cim);
+		  $$('#userBirth').text(userData.birth);
+		  $$('#userPhone').text(userData.phone);
+		  $$('#userPosition').text(userData.position);
+		  $$('#userProfession').text(userData.profession);
+		  $$('#userStore').text(userData.store);
+		  $$('#userType').text(userData.type);
 
-  $$('#userEmailFull').text('Email: ' + storeData.email);
-  $$('#userCimFull').text('CIM: ' + storeData.cim);
-  $$('#userBirthFull').text('Data de Nascimento: ' + storeData.birth);
-  $$('#userPhoneFull').text('Celular: ' + storeData.phone);
+		  $$('#userEmailFull').text('Email: ' + userData.email);
+		  $$('#userCimFull').text('CIM: ' + userData.cim);
+		  $$('#userBirthFull').text('Data de Nascimento: ' + userData.birth);
+		  $$('#userPhoneFull').text('Celular: ' + userData.phone);
+		}
+	});
+
 }
 
 $$('.popover').on('open', function (e) {

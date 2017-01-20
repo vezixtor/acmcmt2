@@ -14,7 +14,6 @@ myApp.onPageInit('editStore', function (page) {
       $$('#editCity').val(store.city);
       $('#editCml').val(store.cml).mask('0000-0000');
       $$('#editDay').val(store.day);
-      $$('#editWeek').val(store.week);
       $$('#editEmail').val(store.email);
       $$('#editFundation').val(dateAdjust(store.fundation));
       $('#editHour').val(store.hour).mask('00:00');;
@@ -26,8 +25,7 @@ myApp.onPageInit('editStore', function (page) {
       $$('#editRito').val(store.rito);
       $$('#editUf').val(store.uf);
       $$('#editVeneravel').val(store.veneravel);
-
-      console.log(store.id);
+      $$('#editWeek').val(store.week);
     }
   });
 
