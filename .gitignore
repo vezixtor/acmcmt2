@@ -3,3 +3,5 @@ plugins/
 res/
 old-files/
 server_files/
+
+.gitignore
