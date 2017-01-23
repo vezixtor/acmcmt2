@@ -1,28 +1,21 @@
 myApp.onPageInit('editProfile', function (page) {
   var userData = JSON.parse(storage.getItem('user'));
-  var id = userData.id;
-  $('#editMobile').mask('+00 00 00000-0000');
 
-  $$.each(userData, function (index, user) {
-    if(id == user.id){
-      $$('#editEmail').val(user.email);
-      $$('#editBirth').val(dateAdjust(user.birth));
-      $$('#editId').val(user.id);
-      $('#editMobile').val(user.mobile).mask('+00 00 00000-0000');
-      $$('#editName').val(user.name);
-      $$('#editPosition').val(user.position);
-      $$('#editProfession').val(user.profession);
-      $$('#editId').val(user.id);
-      $$('#edittyoe').val(user.type);
-      $$('#editStore').val(user.store);
-      $$('#editAdminStore').val(user.admin_store);
-    }
-  });
+  $$('#editEmail').val(userData.email);
+  $$('#editBirth').val(dateAdjust(userData.birth));
+  $('#editPhone').val(userData.phone).mask('+00 00 00000-0000');
+  $$('#editName').val(userData.name);
+  $$('#editPosition').val(userData.position);
+  $$('#editProfession').val(userData.profession);
 
   $$('#updateProfile').on('click', function() {
     var formUser = myApp.formToData('#editProfile-form');
     if(formUser) {
-      formUser.id = id;
+      formUser.cim = userData.cim;
+      formUser.type = userData.type;
+      formUser.store = userData.store;
+      formUser.id = userData.id;
+      formUser.admin_store = userData.admin_store;
       updateProfile(JSON.stringify(formUser));
     }
     else {
@@ -37,9 +30,7 @@ function dateAdjust(data){
 
 function updateProfile(formUser){
   $$.post(apiUrl + 'user_update.php', formUser, function (data) {
-    console.log(data);
     var objeto = JSON.parse(data);
-    console.log(objeto);
     if(objeto.success == 0){
       iziToast.warning({
     		title: 'ERRO',
@@ -59,10 +50,12 @@ function updateProfile(formUser){
         animateInside: true,
         position: 'center'
 			});
+      storage.setItem('user', formUser);
+      setProfile();
+      $$.getJSON(apiUrl + 'user.php', function (data) {
+				storage.setItem('userAll', JSON.stringify(data));
+			});
+      profileView.router.back();
     }
-    $$.getJSON(apiUrl + 'user.php', function (data) {
-      storage.setItem('user', JSON.stringify(data))
-      profileView.back();
-    });
   });
 }

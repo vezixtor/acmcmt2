@@ -52,7 +52,8 @@ var calendarView = myApp.addView('#tab1', {
 var storesView = myApp.addView('#tab2', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
   dynamicNavbar: true,
-  domCache: true
+  domCache: true,
+  reloadPages: true
 });
 
 var profileView = myApp.addView('#tab3', {

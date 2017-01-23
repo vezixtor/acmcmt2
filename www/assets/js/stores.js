@@ -3,6 +3,8 @@ var mySearchbar = myApp.searchbar('.searchbar', {
   searchIn: '.item-title',
 removeDiacritics: true
 });
+
+
 getLojas();
 
 

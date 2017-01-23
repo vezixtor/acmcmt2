@@ -18,6 +18,22 @@ function login(storedData){
     var objeto = JSON.parse(data);
     if(objeto.success == 1){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
+			setProfile();
+
+			$$.getJSON(apiUrl + 'user.php', function (data) {
+				storage.setItem('userAll', JSON.stringify(data));
+			});
+
+			$$.getJSON(apiUrl + 'stores.php', function (data) {
+				storage.setItem('stores', JSON.stringify(data));
+				getLojas();
+			});
+
+			$$.getJSON(apiUrl + 'events.php', function (data) {
+				storage.setItem('events', JSON.stringify(data));
+				setEvents();
+			});
+
       calendarView.router.back();
 			$$('.toolbar').show();
     }else{
@@ -40,12 +56,4 @@ function login(storedData){
   },
     function (xhr, status){console.log(xhr, status)}
   );
-
-	$$.getJSON(apiUrl + 'stores.php', function (data) {
-		storage.setItem('stores', JSON.stringify(data))
-	});
-
-	$$.getJSON(apiUrl + 'events.php', function (data) {
-		storage.setItem('events', JSON.stringify(data));
-	});
 }

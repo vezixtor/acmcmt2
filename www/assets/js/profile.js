@@ -5,34 +5,38 @@ myApp.onPageBack('createStore', function (page) {
 	myApp.showToolbar('.toolbar');
 });
 
-
-var userData = JSON.parse(storage.getItem('user'));
-var id = userData.id;
-console.log(id);
-
 setProfile();
 
 function setProfile() {
-	$$.each(userData, function (index, data) {
-		console.log(data.id);
-    if(id == data.id){
-		  $$('#userName').text(userData.name);
-		  $$('#userEmail').text(userData.email);
-		  $$('#userCim').text(userData.cim);
-		  $$('#userBirth').text(userData.birth);
-		  $$('#userPhone').text(userData.phone);
-		  $$('#userPosition').text(userData.position);
-		  $$('#userProfession').text(userData.profession);
-		  $$('#userStore').text(userData.store);
-		  $$('#userType').text(userData.type);
-
-		  $$('#userEmailFull').text('Email: ' + userData.email);
-		  $$('#userCimFull').text('CIM: ' + userData.cim);
-		  $$('#userBirthFull').text('Data de Nascimento: ' + userData.birth);
-		  $$('#userPhoneFull').text('Celular: ' + userData.phone);
+	var userData = JSON.parse(storage.getItem('user'));
+	if(userData){
+	  $$('#userName').text(userData.name);
+	  $$('#userEmail').text(userData.email);
+	  $$('#userCim').text(userData.cim);
+		if(userData.birth.substring(0,4) > 1000){
+			$$('#userBirth').text(AdjustBirth(userData.birth));
+		}else{
+			$$('#userBirth').text(userData.birth);
 		}
-	});
+	  $$('#userPhone').text(userData.phone);
+	  $$('#userPosition').text(userData.position);
+	  $$('#userProfession').text(userData.profession);
+	  $$('#userStore').text(userData.store);
+	  $$('#userType').text(userData.type);
 
+	  $$('#userEmailFull').text('Email: ' + userData.email);
+	  $$('#userCimFull').text('CIM: ' + userData.cim);
+		if(userData.birth.substring(0,4) > 1000){
+			$$('#userBirthFull').text('Data de Nascimento: ' + AdjustBirth(userData.birth));
+		}else{
+			$$('#userBirth').text('Data de Nascimento: ' + userData.birth);
+		}
+	  $$('#userPhoneFull').text('Celular: ' + userData.phone);
+	}
+}
+
+function AdjustBirth(data){
+	return data.substring(8,10) + '/' + data.substring(5,7) + '/' + data.substring(0,4);
 }
 
 $$('.popover').on('open', function (e) {
