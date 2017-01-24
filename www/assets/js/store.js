@@ -1,5 +1,6 @@
-myApp.onPageBeforeAnimation('store', function (page) {
+myApp.onPageInit('store', function (page) {
   var id = page.query.id;
+  console.log(id);
 
   $$('#calendarLink').on('click', function() {
     storesView.router.back();
