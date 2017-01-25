@@ -1,4 +1,4 @@
-myApp.onPageInit('store', function (page) {
+myApp.onPageBeforeInit('store', function (page) {
   var id = page.query.id;
   console.log(id);
 

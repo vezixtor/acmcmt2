@@ -1,8 +1,17 @@
+myApp.onPageAfterBack('editProfile', function (page) {
+  setProfile();
+});
+
 myApp.onPageInit('editProfile', function (page) {
   var userData = JSON.parse(storage.getItem('user'));
 
   $$('#editEmail').val(userData.email);
-  $$('#editBirth').val(dateAdjust(userData.birth));
+  if(userData.birth.substring(0,4) > 1000){
+    $$('#editBirth').val(userData.birth);
+  }else{
+    console.log(userData.birth);
+    $$('#editBirth').val(serverBirth(userData.birth));
+  }
   $('#editPhone').val(userData.phone).mask('+00 00 00000-0000');
   $$('#editName').val(userData.name);
   $$('#editPosition').val(userData.position);
@@ -24,8 +33,8 @@ myApp.onPageInit('editProfile', function (page) {
   });
 });
 
-function dateAdjust(data){
-	return data.substring(6,10) + '-' + data.substring(3,5) + '-' + data.substring(0,2);
+function serverBirth(dataServer){
+	return dataServer.substring(6,10) + '-' + dataServer.substring(3,5) + '-' + dataServer.substring(0,2);
 }
 
 function updateProfile(formUser){
