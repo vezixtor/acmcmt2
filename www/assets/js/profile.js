@@ -1,10 +1,3 @@
-myApp.onPageBack('editProfile', function (page) {
-	myApp.showToolbar('.toolbar');
-});
-myApp.onPageBack('createStore', function (page) {
-	myApp.showToolbar('.toolbar');
-});
-
 setProfile();
 
 function setProfile() {
@@ -42,13 +35,11 @@ function adjustBirth(data){
 $$('.popover').on('open', function (e) {
 	$$('#editProfile').on('click', function() {
 		profileView.router.loadPage('views/edit-profile.html');
-		myApp.hideToolbar('.toolbar');
 		myApp.closeModal('.popover');
 	});
 
 	$$('#createStore').on('click', function() {
 		profileView.router.loadPage('views/create-store.html');
-		myApp.hideToolbar('.toolbar');
 		myApp.closeModal('.popover');
 	});
 });

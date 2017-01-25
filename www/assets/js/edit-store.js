@@ -1,4 +1,6 @@
 myApp.onPageInit('editStore', function (page) {
+  $$('.toolbar').hide();
+
   var storeData = JSON.parse(storage.getItem('stores'));
   var id = page.query.id;
   $('#editMobile').mask('+00 00 00000-0000');

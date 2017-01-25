@@ -1,6 +1,12 @@
+myApp.onPageInit('store', function (page) {
+  $$('.toolbar').hide();
+});
+myApp.onPageAfterBack('store', function (page) {
+  $$('.toolbar').show();
+});
+
 myApp.onPageBeforeInit('store', function (page) {
   var id = page.query.id;
-  console.log(id);
 
   $$('#calendarLink').on('click', function() {
     storesView.router.back();

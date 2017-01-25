@@ -1,8 +1,9 @@
 myApp.onPageAfterBack('editProfile', function (page) {
-  setProfile();
+  $$('.toolbar').show();
 });
 
 myApp.onPageInit('editProfile', function (page) {
+  $$('.toolbar').hide();
   var userData = JSON.parse(storage.getItem('user'));
 
   $$('#editEmail').val(userData.email);

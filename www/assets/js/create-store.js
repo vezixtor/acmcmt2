@@ -1,4 +1,10 @@
+myApp.onPageAfterBack('createStore', function (page) {
+  $$('.toolbar').show();
+});
+
 myApp.onPageInit('createStore', function (page) {
+  $$('.toolbar').hide();
+
   $('#createMobile').mask('+00 00 00000-0000');
   $('#createPhone').mask('00 0000-0000');
   $('#createCml').mask('00 0000-0000');

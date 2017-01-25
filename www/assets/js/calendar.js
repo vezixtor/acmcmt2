@@ -83,9 +83,5 @@ function fixEventDate(date) {
 
 //TODO New events
 $$('#newEvent').on('click', function() {
-	//calendarView.router.loadPage('views/create-event.html');
+	calendarView.router.loadPage('views/create-event.html');
 });
-
-function clearEvents(){
-	calendarInline.open();
-}

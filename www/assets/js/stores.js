@@ -4,9 +4,7 @@ var mySearchbar = myApp.searchbar('.searchbar', {
 removeDiacritics: true
 });
 
-
 getLojas();
-
 
 function getLojas() {
   $$('#lista-loja').empty();

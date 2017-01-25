@@ -68,6 +68,7 @@ var storage = window.localStorage;
 
 calendarView.router.loadPage('views/login.html');
 
+
 /* navigator.splashscreen.show();
 window.setTimeout(function () {
   //myApp.loginScreen();
