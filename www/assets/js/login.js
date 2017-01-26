@@ -20,7 +20,7 @@ function login(storedData){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
 			setProfile();
 
-			$$.getJSON(apiUrl + 'user.php', function (data) {
+			$$.getJSON(apiUrl + "user.php", function (data) {
 				storage.setItem('userAll', JSON.stringify(data));
 			});
 
@@ -29,10 +29,25 @@ function login(storedData){
 				getLojas();
 			});
 
-			$$.getJSON(apiUrl + 'events.php', function (data) {
+			$$.getJSON(apiUrl + 'events.php?type=store', function (data) {
 				storage.setItem('events', JSON.stringify(data));
 				setEvents();
 			});
+
+			$$.getJSON(apiUrl + "events.php?type=personal", function (data) {
+				storage.setItem('eventsPersonal', JSON.stringify(data));
+				//setEvents();
+			});
+
+			$$.getJSON(apiUrl + "events.php?type=holiday", function (data) {
+				storage.setItem('eventsHoliday', JSON.stringify(data));
+				//setEvents();
+			});
+
+			/*$$.get(apiUrl + 'events.php', {type:'store'}, function (data) {
+				console.log(data);
+				storage.setItem('events', data);
+			});*/
 
       calendarView.router.back();
 			$$('.toolbar').show();
