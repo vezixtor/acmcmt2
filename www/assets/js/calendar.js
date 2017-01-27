@@ -58,12 +58,12 @@ function printEvents(year, month, day) {
 function addEvent(store) {
   var layoutDaLista =
     '<li>' +
-      '<a href="views/event.html?id='+ store.id +'" class="item-link item-content">' +
+      '<a href="views/event.html?type='+ store.type +'&id='+ store.id +'" class="item-link item-content">' +
         '<div class="item-inner">' +
           '<div class="item-title-row">' +
             '<div class="item-title">'+ store.title +'</div>' +
           '</div>' +
-          '<div class="item-subtitle">'+ store.event_type + '</div>' +
+          '<div class="item-subtitle">'+ store.type + '</div>' +
         '</div>' +
       '</a>' +
     '</li>';
