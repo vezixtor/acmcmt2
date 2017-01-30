@@ -8,9 +8,6 @@ myApp.onPageBeforeInit('event', function (page) {
   var id = page.query.id;
   var type = page.query.type;
 
-  console.log(id);
-  console.log(type);
-
   var userData = JSON.parse(storage.getItem('user'));
   var userEvent = JSON.parse(storage.getItem('eventsPersonal'));
   var storeEvent = JSON.parse(storage.getItem('events'));
