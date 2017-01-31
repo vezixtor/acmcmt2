@@ -10,7 +10,6 @@ myApp.onPageInit('editProfile', function (page) {
   if(userData.birth.substring(0,4) > 1000){
     $$('#editBirth').val(userData.birth);
   }else{
-    console.log(userData.birth);
     $$('#editBirth').val(serverBirth(userData.birth));
   }
   $('#editPhone').val(userData.phone).mask('+00 00 00000-0000');

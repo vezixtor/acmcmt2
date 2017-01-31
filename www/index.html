@@ -36,7 +36,7 @@
         		  <div class="navbar-inner">
         			<div class="center">Calendário</div>
               <div class="right">
-                <a href="#" class="open-popover link icon-only" id="newEvent"> <i class="f7-icons">add</i></a>
+                <a href="#" class="link icon-only" id="eventPopover"> <i class="f7-icons">add</i></a>
               </div>
         		  </div>
         		</div>
@@ -96,7 +96,7 @@
         		<div class="navbar">
         		  <div class="navbar-inner">
                 <div class="left">
-                  <a href="#" class="open-popover link icon-only"> <i class="f7-icons">gear_fill</i></a>
+                  <a href="#" class="link icon-only" id="profilePopover"> <i class="f7-icons">gear_fill</i></a>
                 </div>
         			  <div class="center">Perfil</div>
                 <div class="right">
@@ -174,14 +174,14 @@
       </div>
     </div>
 
-    <div class="popover popover-menu" style="width: auto" id="popoverEvent">
+    <div class="popover popover-event" style="width: auto">
       <div class="popover-angle"></div>
       <div class="popover-inner">
         <div class="popover-view view">
           <div class="list-block">
             <ul>
-              <li><a href="#" id="newEventPersonal" class="list-button item-link">Evento Pessoal</a></li>
-              <li id="adminStore"><a href="#" id="newEventStore" class="list-button item-link">Evento Loja</a></li>
+              <li><a href="#" id="newEvent" class="list-button item-link">Evento Pessoal</a></li>
+              <li id="adminEvent" style="display: none"><a href="#" id="newEventStore" class="list-button item-link">Evento Loja</a></li>
             </ul>
           </div>
         </div>

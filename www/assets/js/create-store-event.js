@@ -1,33 +1,32 @@
-myApp.onPageAfterBack('createEvent', function (page) {
+myApp.onPageAfterBack('createStoreEvent', function (page) {
   $$('.toolbar').show();
 });
-myApp.onPageInit('createEvent', function (page) {
+myApp.onPageInit('createStoreEvent', function (page) {
   $$('.toolbar').hide();
 
   $('#eventHour').mask('00:00');
-  $('#eventHour').prop('disabled', false);
 
-  var userData = JSON.parse(storage.getItem('user'));
+  var storeData = JSON.parse(storage.getItem('stores'));
 
-  $$('#newEvent').on('click', function() {
+  $$('#newStoreEvent').on('click', function() {
     var formEvent = myApp.formToData('#createEvent-form');
     if(formEvent){
-      formEvent.type = 'personal';
-      formEvent.id_user = userData.id;
+      formEvenet.type = 'store';
+      formEvent.id_user = storeData.id;
       var check = formEvent.checked;
       if(check.length > 0){
         formEvent.full_time = 'true';
       }else {
         formEvent.full_time = 'false';
       }
-      addNewEvent(JSON.stringify(formEvent));
+      addNewStoreEvent(JSON.stringify(formEvent));
     }else{
       console.log(JSON.stringify(formEvent));
     }
   });
 });
 
-function addNewEvent(formEvent){
+function addNewStoreEvent(formEvent){
   $$.post(apiUrl + 'events_create.php', formEvent, function (data) {
     var objeto = JSON.parse(data);
     if(objeto.success == 0){

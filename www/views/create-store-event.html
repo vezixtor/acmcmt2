@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div data-page="createEvent" class="page">
+<div data-page="createStoreEvent" class="page">
   <div class="page-content">
     <form id="createEvent-form" class="list-block">
         <ul>
@@ -14,7 +14,7 @@
               <div class="item-inner">
                 <div class="item-title label">Nome</div>
                 <div class="item-input">
-                  <input type="text" name="title" id="eventName"/>
+                  <input type="text" name="name" id="eventName"/>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
               <div class="item-inner">
                 <div class="item-title label">Hora</div>
                 <div class="item-input">
-                  <input type="text" name="hour" id="eventHour" disabled placeholder="00:00"/>
+                  <input type="text" name="hour" id="eventHour"/>
                 </div>
               </div>
             </div>
@@ -45,8 +45,8 @@
                 <div class="item-title label">Dia todo:</div>
                 <div class="item-input">
                   <label class="label-switch">
-                    <input type="checkbox" name="checked">
-                    <div class="checkbox" id="checkDay"></div>
+                    <input type="checkbox">
+                    <div class="checkbox"></div>
                   </label>
                 </div>
               </div>
@@ -65,7 +65,7 @@
         </ul>
       <div class="list-block">
         <ul class="list-block-label">
-          <p><a href="#" id="newEvent" class="button button-round active">Salvar</a></p>
+          <p><a href="#" id="newStoreEvent" class="button button-round active">Salvar</a></p>
         </ul>
       </div>
     </form>

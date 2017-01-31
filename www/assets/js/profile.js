@@ -32,7 +32,10 @@ function adjustBirth(data){
 	return data.substring(8,10) + '-' + data.substring(5,7) + '-' + data.substring(0,4);
 }
 
-$$('.popover').on('open', function (e) {
+$$('#profilePopover').on('click', function () {
+	var clickedLink = this;
+	myApp.popover('.popover-menu', clickedLink);
+
 	$$('#editProfile').on('click', function() {
 		profileView.router.loadPage('views/edit-profile.html');
 		myApp.closeModal('.popover');

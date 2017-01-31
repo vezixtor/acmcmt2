@@ -82,6 +82,33 @@ function fixEventDate(date) {
 }
 
 //TODO New events
-$$('#newEvent').on('click', function() {
-	calendarView.router.loadPage('views/create-event.html');
+var userData = JSON.parse(storage.getItem('user'));
+
+if(userData.type == 'admin'){
+	$$('#adminEvent').show();
+}else if(splitAdmin(userData.admin_store, id)){
+	$$('#adminEvent').show();
+}
+
+function splitAdmin(adminEvent, id){
+  var result = adminEvent.split(',');
+  if(result.indexOf(id) > -1){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+$$('#eventPopover').on('click', function () {
+	var clickedLink = this;
+	myApp.popover('.popover-event', clickedLink);
+
+	$$('#newEvent').on('click', function() {
+		calendarView.router.loadPage('views/create-event.html');
+		myApp.closeModal('.popover');
+	});
+	$('#newEventStore').on('click', function() {
+		calendarView.router.loadPage('views/create-store-event.html');
+		myApp.closeModal('.popover');
+	});
 });
