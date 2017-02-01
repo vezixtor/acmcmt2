@@ -1,5 +1,6 @@
 myApp.onPageInit('login', function (page) {
 	$$('.toolbar').hide();
+	$$('.navbar').show();
 
 	$$('#login').on('click', function() {
 		var storedData = myApp.formToData('#login-form');
@@ -24,33 +25,18 @@ function login(storedData){
 				storage.setItem('userAll', JSON.stringify(data));
 			});
 
-			$$.getJSON(apiUrl + 'stores.php', function (data) {
-				storage.setItem('stores', JSON.stringify(data));
-				getLojas();
-			});
+			myApp.showIndicator()
+  		setTimeout(function () {
+				myApp.showTab('#tab1');
+				$$('.toolbar').show();
+				createCalendar();
+				checkStore();
+      	myApp.hideIndicator();
+  		},1000);
 
-			$$.getJSON(apiUrl + 'events.php?type=store', function (data) {
-				storage.setItem('events', JSON.stringify(data));
-				setEvents();
-			});
-
-			$$.getJSON(apiUrl + "events.php?type=personal", function (data) {
-				storage.setItem('eventsPersonal', JSON.stringify(data));
-				//setEvents();
-			});
-
-			$$.getJSON(apiUrl + "events.php?type=holiday", function (data) {
-				storage.setItem('eventsHoliday', JSON.stringify(data));
-				//setEvents();
-			});
-
-			/*$$.get(apiUrl + 'events.php', {type:'store'}, function (data) {
-				console.log(data);
-				storage.setItem('events', data);
-			});*/
-
-      calendarView.router.back();
-			$$('.toolbar').show();
+			var userData = JSON.parse(storage.getItem('user'));
+			console.log(userData);
+      //splashView.router.back();
     }else{
 			iziToast.show({
     		title: 'ERRO',
@@ -61,12 +47,10 @@ function login(storedData){
         animateInside: true,
         position: 'center'
 			});
-      /*myApp.addNotification({
-        title: 'ERRO',
-        message: objeto.message
-      });*/
-	  calendarView.router.back();
+		myApp.showTab('#tab1');
 		$$('.toolbar').show();
+		createCalendar();
+		checkStore();
     };
   },
     function (xhr, status){console.log(xhr, status)}

@@ -30,6 +30,11 @@
   margin-top: -20px;
 }
 
+.calendar-adjust{
+  text-align: center;
+  margin-top: 5px;
+}
+
 .events-span{
   vertical-align: 25%;
   padding-left: 20px;
@@ -37,4 +42,17 @@
 
 .eventlist-adjust{
   margin-top: 10px !important;
+}
+
+.border-personal{
+  border-left: solid 10px #34495E;
+  border-radius: 2px 0 0 2px;
+}
+.border-store{
+  border-left: solid 10px #C0392B;
+  border-radius: 2px 0 0 2px;
+}
+.border-holiday{
+  border-left: solid 10px #F1C40F;
+  border-radius: 2px 0 0 2px;
 }

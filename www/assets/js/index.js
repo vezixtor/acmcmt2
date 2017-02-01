@@ -44,6 +44,11 @@ var $$ = Dom7;
 app.initialize();
 
 // Add view
+var splashView = myApp.addView('#tab0', {
+  // Because we want to use dynamic navbar, we need to enable it for this view:
+  dynamicNavbar: true
+});
+
 var calendarView = myApp.addView('#tab1', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
   dynamicNavbar: true
@@ -66,13 +71,33 @@ var popoverView = myApp.addView('.popover-view');
 var apiUrl = 'http://www.kashew.tecnologia.ws/agendamacom/';
 var storage = window.localStorage;
 
-calendarView.router.loadPage('views/login.html');
+$( document ).ready(function() {
+  $$.getJSON(apiUrl + 'stores.php', function (data) {
+    storage.setItem('stores', JSON.stringify(data));
+    getLojas();
+  });
 
+  $$.getJSON(apiUrl + 'events.php?type=store', function (data) {
+    storage.setItem('events', JSON.stringify(data));
+  });
 
-/* navigator.splashscreen.show();
-window.setTimeout(function () {
-  //myApp.loginScreen();
-  calendarView.router.loadPage('views/login.html');
-    $$('.views').removeAttr('style');
-  //navigator.splashscreen.hide();
-}, 2500); */
+  $$.getJSON(apiUrl + "events.php?type=personal", function (data) {
+    storage.setItem('eventsPersonal', JSON.stringify(data));
+  });
+
+  $$.getJSON(apiUrl + "events.php?type=holiday", function (data) {
+    storage.setItem('eventsHoliday', JSON.stringify(data));
+  });
+
+  var user = JSON.parse(storage.getItem('user'));
+  splashView.router.loadPage('views/login.html');
+  /*if(user != null && user.success != null){
+    myApp.showTab('#tab1');
+    $$('.navbar').show();
+    $$('.toolbar').show();
+    createCalendar();
+    checkStore();
+  }else{
+    splashView.router.loadPage('views/login.html');
+  }*/
+});

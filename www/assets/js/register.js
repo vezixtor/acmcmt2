@@ -1,4 +1,9 @@
+myApp.onPageBeforeInit('register', function (page) {
+  storesSelect();
+});
+
 myApp.onPageInit('register', function (page) {
+  $$('.navbar').show();
   //Colocando mask em campos
   $('#CIM').mask('000000');
 
@@ -16,6 +21,7 @@ myApp.onPageInit('register', function (page) {
   $$('#register').on('click', function() {
   	var storedData = myApp.formToData('#register-form');
   	if(storedData) {
+      storedData.store = storedData.store.join(',');
   		console.log(JSON.stringify(storedData));
       register(JSON.stringify(storedData));
   	}
@@ -25,14 +31,33 @@ myApp.onPageInit('register', function (page) {
   });
 });
 
+function storesSelect(){
+  var storeData = JSON.parse(storage.getItem('stores'));
+  $$.each(storeData, function (index, store) {
+    createSelect(store);
+  });
+}
+function createSelect(store) {
+  var layoutDaLista =
+    '<option value="'+ store.id +'">'+ store.name +'</option> ';
+  $$('#selectStore').append(layoutDaLista);
+}
+
 function register(storedData){
   $$.post(apiUrl + 'register.php', storedData, function (data) {
     console.log(data);
     var objeto = JSON.parse(data);
     if(objeto.success == 1){
-      myApp.alert(objeto.message, 'CADASTRO', function () {
-        mainView.router.back();
-      });
+      iziToast.success({
+    		title: 'Cadastro',
+    		message: objeto.message,
+        backgroundColor: '#EFEFEF',
+        titleColor: 'red',
+        timeout: 2000,
+        animateInside: true,
+        position: 'center'
+			});
+      splashView.router.back();
     }else{
       iziToast.error({
     		title: 'ERRO',
@@ -43,10 +68,6 @@ function register(storedData){
         animateInside: true,
         position: 'center'
 			});
-      /*myApp.addNotification({
-        title: 'ERRO',
-        message: objeto.message
-      });*/
     };
   },
     function (xhr, status){console.log(xhr, status)}
