@@ -45,12 +45,24 @@ function createCalendar(idStore) {
       $$('.calendar-custom-toolbar .right .link').on('click', function () {
           calendarInline.nextMonth();
       });
-			console.log(p.params.value);
-			var toDate = new Date(p.params.value);
-			console.log(toDate.getDate());
-			console.log(toDate.getDay());
-			console.log(toDate.getMonth());
-			console.log(toDate);
+
+			//Pega o dia de hoje (Mesmo comando do parametro "value" deste calendar)
+			var toDate = new Date();
+			var year = toDate.getFullYear(),
+					month = toDate.getMonth(), 
+					day = toDate.getDate();
+
+			//Encontra o "dayContainer" de hoje
+			var dayContainer = $$(p.container[0]).find('.picker-calendar-day-today');
+
+			//Se o hoje houver evento, exiba-os...
+			if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
+        var _month = parseInt(month) + 1;
+				var _day = parseInt(day);
+        if(_month < 10) month = '0'+_month;
+				if(_day < 10) day = '0'+_day;
+        printEvents(year, month, day, idStore);
+      }
     },
     onMonthYearChangeStart: function (p) {
         $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
@@ -58,6 +70,7 @@ function createCalendar(idStore) {
     onDayClick: function (p, dayContainer, year, month, day) {
       $$('#lista-eventos').empty();
       if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
+				console.log(dayContainer);
         var _month = parseInt(month) + 1;
 				var _day = parseInt(day);
         if(_month < 10) month = '0'+_month;
