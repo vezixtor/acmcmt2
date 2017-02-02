@@ -11,24 +11,20 @@ function checkStore(){
 		$$.each(storeData, function (index, store) {
 			if(id == store.id){
 				$$('#titleStore').text(store.name);
+				createCalendar(id);
 			}
-		});
-	}else{
-		$$('.confirm-ok').on('click', function () {
-	    myApp.confirm('Are you sure?', function () {
-	        myApp.alert('You clicked Ok button');
-	    });
 		});
 	}
 }
 
-function createCalendar() {
+function createCalendar(idStore) {
+	$$('#calendar-inline-container').empty();
 	calendarInline = myApp.calendar({
     container: '#calendar-inline-container',
     value: [new Date()],
     weekHeader: true,
     dayNamesShort: semanaNomes,
-    events: setEvents(),
+    events: setEvents(idStore),
     toolbarTemplate:
         '<div class="toolbar calendar-custom-toolbar">' +
             '<div class="toolbar-inner">' +
@@ -42,13 +38,19 @@ function createCalendar() {
             '</div>' +
         '</div>',
     onOpen: function (p) {
-        $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-        $$('.calendar-custom-toolbar .left .link').on('click', function () {
-            calendarInline.prevMonth();
-        });
-        $$('.calendar-custom-toolbar .right .link').on('click', function () {
-            calendarInline.nextMonth();
-        });
+      $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+      $$('.calendar-custom-toolbar .left .link').on('click', function () {
+          calendarInline.prevMonth();
+      });
+      $$('.calendar-custom-toolbar .right .link').on('click', function () {
+          calendarInline.nextMonth();
+      });
+			console.log(p.params.value);
+			var toDate = new Date(p.params.value);
+			console.log(toDate.getDate());
+			console.log(toDate.getDay());
+			console.log(toDate.getMonth());
+			console.log(toDate);
     },
     onMonthYearChangeStart: function (p) {
         $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
@@ -57,10 +59,12 @@ function createCalendar() {
       $$('#lista-eventos').empty();
       if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
         var _month = parseInt(month) + 1;
+				var _day = parseInt(day);
         if(_month < 10) month = '0'+_month;
-        printEvents(year, month, day);
+				if(_day < 10) day = '0'+_day;
+        printEvents(year, month, day, idStore);
       }
-    }
+    },
   });
 
 	var userData = JSON.parse(storage.getItem('user'));
@@ -74,11 +78,11 @@ function createCalendar() {
 	}
 }
 
-function printEvents(year, month, day) {
+function printEvents(year, month, day, idStore) {
   var lookingFor = year + '-' + month + '-' + day;
   var eventsData = JSON.parse(storage.getItem('events'));
 	$$.each(eventsData, function (index, evento) {
-		if(lookingFor == evento.date) {
+		if(lookingFor == evento.date && idStore == evento.id_store) {
       addEvent(evento);
     }
 	});
@@ -111,38 +115,38 @@ function addEvent(store) {
     '</li>';
   $$('#lista-eventos').append(layoutDaLista);
 }
-function setEvents() {
+function setEvents(idStore) {
   var eventsData = JSON.parse(storage.getItem('events'));
 	var eventsDataP = JSON.parse(storage.getItem('eventsPersonal'));
 	var eventsDataH = JSON.parse(storage.getItem('eventsHoliday'));
 	var userEvent = JSON.parse(storage.getItem('user'));
 
 	var id = userEvent.id;
-	console.log(userEvent.id);
-	console.log(id);
-	var events = [], indexOld, indexLenght;
+	var events = [];
+	var indexPersonal = 0, indexHoliday;
+	var countPersonal = 0, countStore = 0;
+
 	if(eventsData.length > 0){
 		$$.each(eventsData, function (index, evento) {
-			events[index] = fixEventDate(evento.date);
-			indexOld = index;
-		});
-	}
-	++indexOld;
-	if(eventsDataP.length > 0){
-		$$.each(eventsDataP, function (index, evento) {
-			if(id == evento.id_user){
-				events[index + indexOld] = fixEventDate(evento.date);
-				indexLenght = index + indexOld;
+			if(idStore == evento.id_store){
+				events[countStore] = fixEventDate(evento.date);
+				indexPersonal = ++countStore;
 			}
 		});
 	}
-	++indexLenght;
-	if(eventsDataH.length > 0){
-		$$.each(eventsDataH, function (index, evento) {
-			events[index + indexLenght] = fixEventDate(evento.date);
+	if(eventsDataP.length > 0){
+		$$.each(eventsDataP, function (index, evento) {
+			if(id == evento.id_user){
+				events[indexPersonal + countPersonal++] = fixEventDate(evento.date);
+				indexHoliday = countPersonal + indexPersonal;
+			}
 		});
 	}
-	console.log(events);
+	if(eventsDataH.length > 0){
+		$$.each(eventsDataH, function (index, evento) {
+			events[index + indexHoliday] = fixEventDate(evento.date);
+		});
+	}
 	return events;
 }
 function fixEventDate(date) {

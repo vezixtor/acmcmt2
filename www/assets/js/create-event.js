@@ -41,16 +41,21 @@ function addNewEvent(formEvent){
         position: 'center'
 			});
     }else{
-      iziToast.success({
-    		message: objeto.message,
-        backgroundColor: '#EFEFEF',
-        titleColor: 'blue',
-        timeout: 2500,
-        animateInside: true,
-        position: 'center'
-			});
-
-      calendarView.router.back();
+      $.getJSON(apiUrl + "events.php?type=personal", function (data) {
+        storage.setItem('eventsPersonal', JSON.stringify(data));
+      }).done(function() {
+        iziToast.success({
+          message: objeto.message,
+          backgroundColor: '#EFEFEF',
+          titleColor: 'blue',
+          timeout: 2500,
+          animateInside: true,
+          position: 'center'
+        });
+      }).always(function() {
+        checkStore();
+        calendarView.router.back();
+      });
     }
   });
 }

@@ -95,7 +95,7 @@ $( document ).ready(function() {
     myApp.showTab('#tab1');
     $$('.navbar').show();
     $$('.toolbar').show();
-    createCalendar();
+    //createCalendar();
     checkStore();
   }else{
     splashView.router.loadPage('views/login.html');

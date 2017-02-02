@@ -29,13 +29,12 @@ function login(storedData){
   		setTimeout(function () {
 				myApp.showTab('#tab1');
 				$$('.toolbar').show();
-				createCalendar();
+				//createCalendar(0);
 				checkStore();
       	myApp.hideIndicator();
   		},1000);
 
 			var userData = JSON.parse(storage.getItem('user'));
-			console.log(userData);
       //splashView.router.back();
     }else{
 			iziToast.show({
@@ -49,7 +48,7 @@ function login(storedData){
 			});
 		myApp.showTab('#tab1');
 		$$('.toolbar').show();
-		createCalendar();
+		//createCalendar(0);
 		checkStore();
     };
   },
