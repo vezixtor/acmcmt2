@@ -10,15 +10,17 @@ function checkStore(){
 		var id = indexStore[0];
 		$$.each(storeData, function (index, store) {
 			if(id == store.id){
-				$$('#titleStore').text(store.name);
-				createCalendar(id);
+				//$$('#titleStore').text(store.name);
+				var title = store.name;
+				createCalendar(id, title);
 			}
 		});
 	}
 }
 
-function createCalendar(idStore) {
+function createCalendar(idStore, title) {
 	$$('#calendar-inline-container').empty();
+	$('#titleStore').text(title);
 	calendarInline = myApp.calendar({
     container: '#calendar-inline-container',
     value: [new Date()],
@@ -49,7 +51,7 @@ function createCalendar(idStore) {
 			//Pega o dia de hoje (Mesmo comando do parametro "value" deste calendar)
 			var toDate = new Date();
 			var year = toDate.getFullYear(),
-					month = toDate.getMonth(), 
+					month = toDate.getMonth(),
 					day = toDate.getDate();
 
 			//Encontra o "dayContainer" de hoje

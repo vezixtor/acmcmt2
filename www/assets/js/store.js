@@ -7,11 +7,7 @@ myApp.onPageAfterBack('store', function (page) {
 
 myApp.onPageBeforeInit('store', function (page) {
   var id = page.query.id;
-
-  $$('#calendarLink').on('click', function() {
-    storesView.router.back();
-    myApp.showTab('#tab1');
-  });
+  var title;
 
   $$('#editStore').on('click', function() {
     storesView.router.loadPage('views/edit-store.html?id=' + id);
@@ -28,6 +24,8 @@ myApp.onPageBeforeInit('store', function (page) {
 
   $$.each(storeData, function (index, store) {
     if(id == store.id){
+      title = store.name;
+
       $$('#itemAddress').text(store.address);
       $$('#itemCep').text(store.cep);
       $$('#itemCity').text(store.city);
@@ -150,6 +148,12 @@ myApp.onPageBeforeInit('store', function (page) {
       }
 
     }
+  });
+
+  $$('#calendarLink').on('click', function() {
+    createCalendar(id, title);
+    storesView.router.back();
+    myApp.showTab('#tab1');
   });
 
 });
