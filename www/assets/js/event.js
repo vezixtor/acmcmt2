@@ -1,5 +1,12 @@
 myApp.onPageInit('event', function (page) {
   $$('.toolbar').hide();
+
+  $$('#deleteEvent').on('click', function () { 
+    myApp.confirm('Deseja deletar este evento', '', function () {
+        myApp.alert('Evento deletado', 'Deletado');
+        calendarView.back();
+    });
+  });
 });
 myApp.onPageAfterBack('event', function (page) {
   $$('.toolbar').show();

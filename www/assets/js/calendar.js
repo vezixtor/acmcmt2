@@ -70,7 +70,6 @@ function createCalendar(idStore) {
     onDayClick: function (p, dayContainer, year, month, day) {
       $$('#lista-eventos').empty();
       if($$(dayContainer).hasClass('picker-calendar-day-has-events')) {
-				console.log(dayContainer);
         var _month = parseInt(month) + 1;
 				var _day = parseInt(day);
         if(_month < 10) month = '0'+_month;
