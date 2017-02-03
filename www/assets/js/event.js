@@ -1,13 +1,6 @@
 myApp.onPageInit('event', function (page) {
   $$('.toolbar').hide();
 
-  $$('#deleteEvent').on('click', function () {
-    myApp.confirm('Deseja deletar este evento', '', function () {
-        myApp.alert('Evento deletado', 'Deletado');
-        calendarView.back();
-    });
-  });
-
 });
 myApp.onPageAfterBack('event', function (page) {
   $$('.toolbar').show();
@@ -46,7 +39,6 @@ myApp.onPageBeforeInit('event', function (page) {
       	return data.substring(8,10) + '-' + data.substring(5,7) + '-' + data.substring(0,4);
       }
 
-      console.log(data);
       $$('#itemFullDay').text('Dia: '+ adjustBirth(data.date));
       if(data.full_time == 'true'){
         $$('#itemFullHour').text('Horário: Dia inteiro');
@@ -77,4 +69,52 @@ myApp.onPageBeforeInit('event', function (page) {
     }
   });
 
+  $$('#deleteEvent').on('click', function () {
+    myApp.confirm('Deseja deletar este evento', '', function () {
+        deletEvent(id, type);
+        myApp.alert('Evento deletado', 'Deletado');
+    });
+  });
+
 });
+
+function deletEvent(id, type){
+  var dataDelete = {id: id, type: type};
+  console.log(dataDelete);
+
+  $$.post(apiUrl + 'events_delete.php', JSON.stringify(dataDelete), function (data) {
+    console.log(data);
+    var objeto = JSON.parse(data);
+    if(objeto.success == 0){
+      iziToast.warning({
+    		title: 'ERRO',
+    		message: objeto.message,
+        backgroundColor: '#EFEFEF',
+        titleColor: '#F1C40F',
+        timeout: 2500,
+        animateInside: true,
+        position: 'center'
+			});
+    }else{
+      $.getJSON(apiUrl + "events.php?type="+ type, function (data) {
+        if(type == 'store'){
+          storage.setItem('events', JSON.stringify(data));
+        }else{
+          storage.setItem('eventsPersonal', JSON.stringify(data));
+        }
+      }).done(function() {
+        iziToast.success({
+          message: objeto.message,
+          backgroundColor: '#EFEFEF',
+          titleColor: 'blue',
+          timeout: 2500,
+          animateInside: true,
+          position: 'center'
+        });
+      }).always(function() {
+        checkStore();
+        calendarView.router.back();
+      });
+    }
+  });
+}
