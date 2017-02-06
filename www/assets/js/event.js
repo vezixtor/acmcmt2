@@ -54,7 +54,7 @@ myApp.onPageBeforeInit('event', function (page) {
         });
         $$('#itemC').text(data.description);
         $$('#divC').css('text-align', 'center');
-      }else{
+      }else if(data.type == 'personal'){
         $$('#itemA').text('Descrição:');
         $$('#divA').css({
           'text-align': 'center',
@@ -64,6 +64,10 @@ myApp.onPageBeforeInit('event', function (page) {
         $$('#divB').css('text-align', 'center');
         $$('#itemC').text('');
         $$('#divC').addClass('noDisplay');
+      }else{
+        $$('#divA').addClass('noDisplay');
+        $$('#divB').addClass('noDisplay');
+        $$('#divC').addClass('noDisplay');
       }
 
     }
@@ -72,18 +76,20 @@ myApp.onPageBeforeInit('event', function (page) {
   $$('#deleteEvent').on('click', function () {
     myApp.confirm('Deseja deletar este evento', '', function () {
         deletEvent(id, type);
-        myApp.alert('Evento deletado', 'Deletado');
     });
   });
+
+  if(type == 'holiday'){
+    $$('#deleteEvent').hide();
+    $$('#editEvent').hide();
+  }
 
 });
 
 function deletEvent(id, type){
   var dataDelete = {id: id, type: type};
-  console.log(dataDelete);
 
   $$.post(apiUrl + 'events_delete.php', JSON.stringify(dataDelete), function (data) {
-    console.log(data);
     var objeto = JSON.parse(data);
     if(objeto.success == 0){
       iziToast.warning({
@@ -97,10 +103,10 @@ function deletEvent(id, type){
 			});
     }else{
       $.getJSON(apiUrl + "events.php?type="+ type, function (data) {
-        if(type == 'store'){
-          storage.setItem('events', JSON.stringify(data));
-        }else{
+        if(type == 'personal'){
           storage.setItem('eventsPersonal', JSON.stringify(data));
+        }else{
+          storage.setItem('events', JSON.stringify(data));
         }
       }).done(function() {
         iziToast.success({

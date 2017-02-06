@@ -40,6 +40,7 @@ function createCalendar(idStore, title) {
             '</div>' +
         '</div>',
     onOpen: function (p) {
+			$$('#lista-eventos').empty();
       $$('.calendar-custom-toolbar .center').text(monthNames[p.currentMonth] +', ' + p.currentYear);
       $$('.calendar-custom-toolbar .left .link').on('click', function () {
           calendarInline.prevMonth();
@@ -117,9 +118,13 @@ function printEvents(year, month, day, idStore) {
 }
 function addEvent(store) {
   var layoutDaLista =
-    '<li>' +
-      '<a href="views/event.html?type='+ store.type +'&id='+ store.id +'" class="item-link item-content border-'+ store.type +'">' +
-        '<div class="item-inner">' +
+    '<li>';
+			if(store.type == 'holiday'){
+			layoutDaLista +=	'<a href="#" class="item-content border-'+ store.type +'">';
+		}else{
+			layoutDaLista += '<a href="views/event.html?type='+ store.type +'&id='+ store.id +'" class="item-link item-content border-'+ store.type +'">';
+		}
+    	layoutDaLista += '<div class="item-inner">' +
           '<div class="item-title-row">' +
             '<div class="item-title">'+ store.title +'</div>' +
           '</div>' +
