@@ -7,7 +7,10 @@
 
 <div data-page="createStoreEvent" class="page">
   <div class="page-content">
-    <form id="createEvent-form" class="list-block">
+    <div class="content-block-title  calendar-adjust">
+      <p id="eventStore" name='store'></p>
+    </div>
+    <form id="createStoreEvent-form" class="list-block">
         <ul>
           <li>
             <div class="item-content">
@@ -34,7 +37,7 @@
               <div class="item-inner">
                 <div class="item-title label">Hora</div>
                 <div class="item-input">
-                  <input type="text" name="hour" id="eventHour"/>
+                  <input type="time" name="hour" id="eventHour"/>
                 </div>
               </div>
             </div>
@@ -45,7 +48,7 @@
                 <div class="item-title label">Dia todo:</div>
                 <div class="item-input">
                   <label class="label-switch">
-                    <input type="checkbox">
+                    <input id="checkHour" type="checkbox">
                     <div class="checkbox"></div>
                   </label>
                 </div>

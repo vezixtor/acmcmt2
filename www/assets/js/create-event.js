@@ -1,28 +1,37 @@
 myApp.onPageAfterBack('createEvent', function (page) {
   $$('.toolbar').show();
 });
+
 myApp.onPageInit('createEvent', function (page) {
   $$('.toolbar').hide();
-
   $('#eventHour').mask('00:00');
-  $('#eventHour').prop('disabled', false);
+  $("#eventHour").prop('value', '00:00');
 
   var userData = JSON.parse(storage.getItem('user'));
 
   $$('#newEvent').on('click', function() {
     var formEvent = myApp.formToData('#createEvent-form');
     if(formEvent){
-      formEvent.type = 'personal';
+      formEvent.type = 'store';
       formEvent.id_user = userData.id;
-      var check = formEvent.checked;
-      if(check.length > 0){
+      if(document.getElementById('checkHour').checked) {
         formEvent.full_time = 'true';
-      }else {
+      } else {
         formEvent.full_time = 'false';
       }
+      console.log(formEvent.full_time);
       addNewEvent(JSON.stringify(formEvent));
     }else{
       console.log(JSON.stringify(formEvent));
+    }
+  });
+
+  $('#checkHour').click(function() {
+    if(document.getElementById('checkHour').checked) {
+      $("#eventHour").prop('disabled', true);
+      $("#eventHour").prop('value', '00:00');
+    } else {
+      $("#eventHour").prop('disabled', false);
     }
   });
 });

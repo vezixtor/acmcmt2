@@ -1,6 +1,7 @@
 var calendarInline;
 var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto' , 'Setembro' , 'Outubro', 'Novembro', 'Dezembro'];
 var semanaNomes = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+var idStoreGlobal;
 
 function checkStore(){
 	var userData = JSON.parse(storage.getItem('user'));
@@ -19,6 +20,7 @@ function checkStore(){
 }
 
 function createCalendar(idStore, title) {
+	idStoreGlobal = idStore;
 	$$('#calendar-inline-container').empty();
 	$('#titleStore').text(title);
 	calendarInline = myApp.calendar({
@@ -192,7 +194,7 @@ $$('#eventPopover').on('click', function () {
 		myApp.closeModal('.popover');
 	});
 	$('#newEventStore').on('click', function() {
-		calendarView.router.loadPage('views/create-store-event.html');
+		calendarView.router.loadPage('views/create-store-event.html?id='+idStoreGlobal);
 		myApp.closeModal('.popover');
 	});
 });
