@@ -12,14 +12,13 @@ myApp.onPageInit('createEvent', function (page) {
   $$('#newEvent').on('click', function() {
     var formEvent = myApp.formToData('#createEvent-form');
     if(formEvent){
-      formEvent.type = 'store';
+      formEvent.type = 'personal';
       formEvent.id_user = userData.id;
       if(document.getElementById('checkHour').checked) {
         formEvent.full_time = 'true';
       } else {
         formEvent.full_time = 'false';
       }
-      console.log(formEvent.full_time);
       addNewEvent(JSON.stringify(formEvent));
     }else{
       console.log(JSON.stringify(formEvent));

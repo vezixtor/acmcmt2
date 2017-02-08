@@ -1,8 +1,10 @@
 setProfile();
+var idUser;
 
 function setProfile() {
 	var userData = JSON.parse(storage.getItem('user'));
 	if(userData){
+		idUser = userData.id;
 	  $$('#userName').text(userData.name);
 	  $$('#userEmail').text(userData.email);
 	  $$('#userCim').text(userData.cim);
@@ -46,3 +48,45 @@ $$('#profilePopover').on('click', function () {
 		myApp.closeModal('.popover');
 	});
 });
+
+setLojas();
+
+function setLojas(data) {
+  $$('#lista-profile').empty();
+  var storeData = JSON.parse(storage.getItem('stores'));
+	var userData = JSON.parse(storage.getItem('user'));
+	var userStore = [];
+	userStore = userData.store.split(',');
+	var userLength = userStore.length;
+	var x = 0;
+	while(x < userLength){
+		var index = storeData.map(function(e) { return e.id; }).indexOf(userStore[x]);
+		var data = storeData[index];
+		inputStore(storeData[index]);
+		x++;
+	}
+
+}
+
+function inputStore(data) {
+  var layoutDaLista =
+    '<li>' +
+      '<a href="views/store.html?id='+ data.id +'" class="item-link item-content">' +
+        //'<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
+        '<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
+        '<div class="item-inner">' +
+          '<div class="item-title-row">' +
+            '<div class="item-title">'+ data.name +'</div>' +
+            //'<div class="item-after">'+ store.hour +'</div>' +
+          '</div>' +
+          '<div class="item-subtitle">'+ data.address +', '+ data.number +'</div>' +
+          '<div class="item-text">'+ data.city +', '+ data.uf +'</div>' +
+        '</div>' +
+      '</a>' +
+    '</li>';
+  $$('#lista-profile').append(layoutDaLista);
+}
+function randomBetween(x, y) {
+  //Generate random number between two numbers in JavaScript TODO
+  return Math.floor(Math.random() * y) + x;
+}

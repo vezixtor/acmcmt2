@@ -1,23 +1,20 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
-    <div class="center sliding">Novo Evento</div>
+    <div class="center sliding">Editar Evento</div>
   </div>
 </div>
 
-<div data-page="createStoreEvent" class="page">
+<div data-page="editEvent" class="page">
   <div class="page-content">
-    <div class="content-block-title  calendar-adjust">
-      <p id="eventStore" name='store'></p>
-    </div>
-    <form id="createStoreEvent-form" class="list-block">
+    <form id="editEvent-form" class="list-block">
         <ul>
           <li>
             <div class="item-content">
               <div class="item-inner">
                 <div class="item-title label">Nome</div>
                 <div class="item-input">
-                  <input type="text" name="title" id="eventName"/>
+                  <input type="text" name="title" id="eventTitle"/>
                 </div>
               </div>
             </div>
@@ -48,7 +45,7 @@
                 <div class="item-title label">Dia todo:</div>
                 <div class="item-input">
                   <label class="label-switch">
-                    <input id="checkHour" type="checkbox">
+                    <input id="checkHour" type="checkbox" checked>
                     <div class="checkbox"></div>
                   </label>
                 </div>
@@ -68,7 +65,7 @@
         </ul>
       <div class="list-block">
         <ul class="list-block-label">
-          <p><a href="#" id="newStoreEvent" class="button button-round active">Salvar</a></p>
+          <p><a href="#" id="updateEvent" class="button button-round active">Salvar</a></p>
         </ul>
       </div>
     </form>

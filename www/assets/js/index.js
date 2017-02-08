@@ -51,7 +51,8 @@ var splashView = myApp.addView('#tab0', {
 
 var calendarView = myApp.addView('#tab1', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
-  dynamicNavbar: true
+  dynamicNavbar: true,
+  domCache: true
 });
 
 var storesView = myApp.addView('#tab2', {
@@ -62,7 +63,8 @@ var storesView = myApp.addView('#tab2', {
 
 var profileView = myApp.addView('#tab3', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
-  dynamicNavbar: true
+  dynamicNavbar: true,
+  domCache: true
 });
 
 var popoverView = myApp.addView('.popover-view');

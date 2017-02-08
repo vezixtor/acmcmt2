@@ -1,13 +1,20 @@
+//Executa os códigos na iniciação da página
 myApp.onPageInit('event', function (page) {
   $$('.toolbar').hide();
 
 });
+
+//Executa os códigos após voltar pra página
 myApp.onPageAfterBack('event', function (page) {
   $$('.toolbar').show();
 });
+
+//Executa os códigos antes de iniciar a página
 myApp.onPageBeforeInit('event', function (page) {
   var id = page.query.id;
   var type = page.query.type;
+  var idStore;
+  var id_user;
 
   var userData = JSON.parse(storage.getItem('user'));
   var userEvent = JSON.parse(storage.getItem('eventsPersonal'));
@@ -35,18 +42,33 @@ myApp.onPageBeforeInit('event', function (page) {
       $$('#itemIdUser').text(data.id_user);
       $$('#itemType').text(data.type);
 
+
+      if(type == 'store'){
+        id_user = '';
+        idStore = data.id_store;
+        var storesData = JSON.parse(storage.getItem('stores'));
+        var index = storesData.map(function(e) { return e.id; }).indexOf(idStore);
+        var storeName = storesData[index].name;
+      }else{
+        id_user = data.id_user;
+        idStore = '';
+      }
+
       function adjustBirth(data){
       	return data.substring(8,10) + '-' + data.substring(5,7) + '-' + data.substring(0,4);
+      }
+      function adjustHour(hour){
+      	return hour.substring(0,2) + ':' + hour.substring(3,5);
       }
 
       $$('#itemFullDay').text('Dia: '+ adjustBirth(data.date));
       if(data.full_time == 'true'){
         $$('#itemFullHour').text('Horário: Dia inteiro');
       }else{
-        $$('#itemFullHour').text('Horário: '+ data.hour);
+        $$('#itemFullHour').text('Horário: '+ adjustHour(data.hour));
       }
       if(data.type == 'store'){
-        $$('#itemA').text('Loja: '+ data.store);
+        $$('#itemA').text('Loja: '+ storeName);
         $$('#itemB').text('Descrição:');
         $$('#divB').css({
           'text-align': 'center',
@@ -77,6 +99,11 @@ myApp.onPageBeforeInit('event', function (page) {
     myApp.confirm('Deseja deletar este evento', '', function () {
         deletEvent(id, type);
     });
+  });
+
+  $$('#editEvent').on('click', function () {
+    calendarView.router.loadPage('views/edit-event.html?id=' + id + '&type=' + type + '&id_user=' + id_user + '&idStore=' + idStore);
+    console.log(id, type, id_user, idStore);
   });
 
   if(type == 'holiday'){

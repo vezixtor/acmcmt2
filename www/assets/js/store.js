@@ -153,6 +153,7 @@ myApp.onPageBeforeInit('store', function (page) {
   $$('#calendarLink').on('click', function() {
     createCalendar(id, title);
     storesView.router.back();
+    profileView.router.back();
     myApp.showTab('#tab1');
   });
 

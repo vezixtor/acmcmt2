@@ -8,7 +8,6 @@ myApp.onPageInit('createStoreEvent', function (page) {
   $("#eventHour").prop('value', '00:00');
 
   var id = page.query.id;
-  console.log(id);
 
   var storeData = JSON.parse(storage.getItem('stores'));
   var userData = JSON.parse(storage.getItem('user'));
@@ -21,14 +20,13 @@ myApp.onPageInit('createStoreEvent', function (page) {
   $$('#newStoreEvent').on('click', function() {
     var formEvent = myApp.formToData('#createStoreEvent-form');
     if(formEvent){
-      formEvenet.type = 'store';
+      formEvent.type = 'store';
       formEvent.id_store = id;
       if(document.getElementById('checkHour').checked) {
         formEvent.full_time = 'true';
       } else {
         formEvent.full_time = 'false';
       }
-      console.log(formEvent.full_time);
       addNewStoreEvent(JSON.stringify(formEvent));
     }else{
       console.log(JSON.stringify(formEvent));
@@ -71,7 +69,7 @@ function addNewStoreEvent(formEvent){
           position: 'center'
         });
       }).always(function() {
-        checkStore();
+        checkStore(id, title);
         calendarView.router.back();
       });
     }
