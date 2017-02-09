@@ -3,5 +3,6 @@ plugins/
 res/
 old-files/
 server_files/
+node_modules/
 
 .gitignore
