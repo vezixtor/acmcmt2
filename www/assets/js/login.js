@@ -1,8 +1,9 @@
-myApp.onPageInit('login', function (page) {
+myApp.onPageAfterAnimation('login', function (page) {
 	$$('.toolbar').hide();
 	$$('.navbar').show();
 
-	$$('#login').on('click', function() {
+	$$('#btnlogin').on('click', function() {
+
 		var storedData = myApp.formToData('#login-form');
 		if(storedData) {
 	    login(JSON.stringify(storedData));
@@ -20,7 +21,7 @@ function login(storedData){
     if(objeto.success == 1){
 			storage.setItem('user', data); // Pass a key name and its value to add or update that key.
 			setProfile();
-
+			setLojas();
 			$$.getJSON(apiUrl + "user.php", function (data) {
 				storage.setItem('userAll', JSON.stringify(data));
 			});

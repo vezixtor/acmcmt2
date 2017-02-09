@@ -28,7 +28,7 @@ myApp.onPageInit('editProfile', function (page) {
       updateProfile(JSON.stringify(formUser));
     }
     else {
-      console.log(JSON.stringify(formUser))
+      console.log(JSON.stringify(formUser));
     }
   });
 });

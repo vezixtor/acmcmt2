@@ -77,6 +77,7 @@ $( document ).ready(function() {
   $$.getJSON(apiUrl + 'stores.php', function (data) {
     storage.setItem('stores', JSON.stringify(data));
     getLojas();
+    setLojas();
   });
 
   $$.getJSON(apiUrl + 'events.php?type=store', function (data) {

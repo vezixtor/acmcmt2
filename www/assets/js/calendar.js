@@ -3,6 +3,7 @@ var monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'J
 var semanaNomes = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 var idStoreGlobal;
 
+
 function checkStore(){
 	var userData = JSON.parse(storage.getItem('user'));
 	var storeData = JSON.parse(storage.getItem('stores'));

@@ -34,6 +34,28 @@ function adjustBirth(data){
 	return data.substring(8,10) + '-' + data.substring(5,7) + '-' + data.substring(0,4);
 }
 
+$$('#iconLogout').on('click', function () {
+	storage.clear('user');
+	$$.getJSON(apiUrl + 'stores.php', function (data) {
+    storage.setItem('stores', JSON.stringify(data));
+    getLojas();
+    setLojas();
+  });
+
+  $$.getJSON(apiUrl + 'events.php?type=store', function (data) {
+    storage.setItem('events', JSON.stringify(data));
+  });
+
+  $$.getJSON(apiUrl + "events.php?type=personal", function (data) {
+    storage.setItem('eventsPersonal', JSON.stringify(data));
+  });
+
+  $$.getJSON(apiUrl + "events.php?type=holiday", function (data) {
+    storage.setItem('eventsHoliday', JSON.stringify(data));
+  });
+	profileView.router.loadPage('views/login.html');
+});
+
 $$('#profilePopover').on('click', function () {
 	var clickedLink = this;
 	myApp.popover('.popover-menu', clickedLink);
@@ -47,9 +69,12 @@ $$('#profilePopover').on('click', function () {
 		profileView.router.loadPage('views/create-store.html');
 		myApp.closeModal('.popover');
 	});
-});
 
-setLojas();
+	$$('#updatePassword').on('click', function() {
+		profileView.router.loadPage('views/edit-password.html');
+		myApp.closeModal('.popover');
+	});
+});
 
 function setLojas(data) {
   $$('#lista-profile').empty();
