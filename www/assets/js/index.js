@@ -93,45 +93,20 @@ $( document ).ready(function() {
   });
 
   var user = JSON.parse(storage.getItem('user'));
-  splashView.router.loadPage('views/login.html');
-  /*if(user != null && user.success != null){
-    myApp.showTab('#tab1');
-    $$('.navbar').show();
-    $$('.toolbar').show();
-    //createCalendar();
-    checkStore();
+  //splashView.router.loadPage('views/login.html');
+  if(user != null && user.success != null){
+    setTimeout(function () {
+      myApp.showTab('#tab1');
+      $$('.navbar').show();
+      $$('.toolbar').show();
+      //createCalendar();
+      checkStore();
+    },1000);
   }else{
     splashView.router.loadPage('views/login.html');
-  }*/
+  }
 });
 
-
-Date.prototype.getNextWeekMonday = function() {
-    var date = new Date();
-    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    var d = new Date(firstDay);
-    var diff = d.getDate() - d.getDay() + 5;
-    return new Date(d.setDate(diff));
-};
-
-Date.prototype.addDays = function(days) {
-    var dat = new Date(this.valueOf());
-    dat.setDate(dat.getDate() + days);
-    return dat;
-};
-
-var check = true;
-var date = new Date();
-var dateLast = new Date();
-date = date.getNextWeekMonday();
-var lastDay = new Date(dateLast.getFullYear(), dateLast.getMonth() + 1, 0);
-var i = 0;
-while(check){
-  if(date.addDays(7*i) <= lastDay){
-    console.log(date.addDays(7*i));
-  }else{
-    check = false;
-    console.log('Fim');
-  }
-  i++;
+function goLogin(){
+  splashView.router.loadPage('views/login.html');
 }

@@ -52,12 +52,12 @@ function login(storedData){
         animateInside: true,
         position: 'center'
 			});
-		myApp.showTab('#tab1');
+	/*	myApp.showTab('#tab1');
 		$$('.toolbar').show();
 		//createCalendar(0);
-		checkStore();
-    };
-  },
+		checkStore();*/
+		};
+	},
     function (xhr, status){console.log(xhr, status)}
   );
 }

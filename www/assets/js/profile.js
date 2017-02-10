@@ -56,7 +56,8 @@ $$('#iconLogout').on('click', function () {
 	myApp.showTab('#tab0');
 	$$('.toolbar').hide();
 	$$('.navbar').show();
-	//profileView.router.loadPage('views/login.html');
+	goLogin();
+
 });
 
 $$('#profilePopover').on('click', function () {
@@ -99,7 +100,7 @@ function setLojas(data) {
 function inputStore(data) {
   var layoutDaLista =
     '<li>' +
-      '<a href="views/store.html?id='+ data.id +'" class="item-link item-content">' +
+      '<a href="views/store.html?id='+ data.id +'&view=profile" class="item-link item-content">' +
         '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
         //'<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
         '<div class="item-inner">' +

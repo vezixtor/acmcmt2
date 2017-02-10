@@ -7,10 +7,15 @@ myApp.onPageAfterBack('store', function (page) {
 
 myApp.onPageBeforeInit('store', function (page) {
   var id = page.query.id;
+  var view = page.query.view;
   var title;
 
   $$('#editStore').on('click', function() {
-    storesView.router.loadPage('views/edit-store.html?id=' + id);
+    if(view == 'profile'){
+      profileView.router.loadPage('views/edit-store.html?id=' + id);
+    }else{
+      storesView.router.loadPage('views/edit-store.html?id=' + id);
+    }
   });
 
   var storeData = JSON.parse(storage.getItem('stores'));
