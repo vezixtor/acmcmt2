@@ -18,8 +18,8 @@ function insertStore(store) {
   var layoutDaLista =
     '<li>' +
       '<a href="views/store.html?id='+ store.id +'" class="item-link item-content">' +
-        //'<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
-        '<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
+        '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
+        //'<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
         '<div class="item-inner">' +
           '<div class="item-title-row">' +
             '<div class="item-title">'+ store.name +'</div>' +

@@ -45,7 +45,7 @@ myApp.onPageInit('editEvent', function (page) {
       formEvent.id = id;
       formEvent.id_user = idUser;
       formEvent.id_store = idStore;
-      updateEvent(JSON.stringify(formEvent));
+      updateEvent(JSON.stringify(formEvent), id, type, idUser, idStore);
     }
     else {
       console.log(JSON.stringify(formEvent))
@@ -59,10 +59,8 @@ function adjustDate(data){
 	return data.substring(6,10) + '-' + data.substring(3,5) + '-' + data.substring(0,2);
 }
 
-function updateEvent(formEvent, type){
+function updateEvent(formEvent, id, type, idUser, idStore){
   $$.post(apiUrl + 'events_update.php', formEvent, function (data) {
-    
-    console.log(data);
     var objeto = JSON.parse(data);
     if(objeto.success == 0){
       iziToast.warning({
@@ -75,7 +73,6 @@ function updateEvent(formEvent, type){
         position: 'center'
 			});
     }else{
-      console.log(type);
       if(type == 'store'){
         var t = 'store';
         var e = 'events';
@@ -84,7 +81,6 @@ function updateEvent(formEvent, type){
         var e = 'eventsPersonal';
       }
       $.getJSON(apiUrl + "events.php?type="+ t, function (data) {
-        console.log(t)
         storage.setItem(e, JSON.stringify(data));
       }).done(function() {
         iziToast.success({
@@ -95,11 +91,13 @@ function updateEvent(formEvent, type){
           animateInside: true,
           position: 'center'
         });
+          eventUpdate(id, type, idUser, idStore);
+          checkStore();
       }).always(function() {
-        checkStore();
+        setTimeout(function () {
         calendarView.router.back();
+      },1000);
       });
     }
-    console.log(apiUrl + "events.php?type="+t);
   });
 }

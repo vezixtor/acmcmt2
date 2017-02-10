@@ -1,4 +1,9 @@
-myApp.onPageAfterAnimation('login', function (page) {
+myApp.onPageAfterBack('login', function (page) {
+	$$('.toolbar').hide();
+	$$('.navbar').show();
+});
+
+myApp.onPageInit('login', function (page) {
 	$$('.toolbar').hide();
 	$$('.navbar').show();
 
@@ -30,13 +35,13 @@ function login(storedData){
   		setTimeout(function () {
 				myApp.showTab('#tab1');
 				$$('.toolbar').show();
-				//createCalendar(0);
+				$$('#inputEmail').val('');
+				$$('#inputPassword').val('');
 				checkStore();
       	myApp.hideIndicator();
   		},1000);
 
 			var userData = JSON.parse(storage.getItem('user'));
-      //splashView.router.back();
     }else{
 			iziToast.show({
     		title: 'ERRO',

@@ -35,7 +35,7 @@ function adjustBirth(data){
 }
 
 $$('#iconLogout').on('click', function () {
-	storage.clear('user');
+	storage.clear();
 	$$.getJSON(apiUrl + 'stores.php', function (data) {
     storage.setItem('stores', JSON.stringify(data));
     getLojas();
@@ -53,7 +53,10 @@ $$('#iconLogout').on('click', function () {
   $$.getJSON(apiUrl + "events.php?type=holiday", function (data) {
     storage.setItem('eventsHoliday', JSON.stringify(data));
   });
-	profileView.router.loadPage('views/login.html');
+	myApp.showTab('#tab0');
+	$$('.toolbar').hide();
+	$$('.navbar').show();
+	//profileView.router.loadPage('views/login.html');
 });
 
 $$('#profilePopover').on('click', function () {
@@ -97,8 +100,8 @@ function inputStore(data) {
   var layoutDaLista =
     '<li>' +
       '<a href="views/store.html?id='+ data.id +'" class="item-link item-content">' +
-        //'<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
-        '<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
+        '<div class="item-media"><img src="http://lorempixel.com/80/80/city/'+ randomBetween(1, 10) +'" width="80"></div>' +
+        //'<div class="item-media"><img src="http://placehold.it/200.png/0000bb" width="80"></div>' +
         '<div class="item-inner">' +
           '<div class="item-title-row">' +
             '<div class="item-title">'+ data.name +'</div>' +

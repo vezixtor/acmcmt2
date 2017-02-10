@@ -171,19 +171,18 @@ function splitAdmin(adminStore, id){
 }
 
 
-function setUsers(id, data){
+function setUsers(id){
   $$('#lista-user').empty();
   var usersData = JSON.parse(storage.getItem('userAll'));
   var userStore = [];
-  $$.each(usersData, function (index, stores) {
-    if(stores.store){
-      userStore = stores.store.split(',');
+  $$.each(usersData, function (index, dataUser) {
+    if(dataUser.store != ''){
+      userStore = dataUser.store.split(',');
       var userLength = userStore.length;
       var x = 0;
       while(x < userLength){
         if(userStore[x] == id){
-          var data = usersData[x];
-          inputUser(usersData[x]);
+          inputUser(usersData[index]);
         }
         x++;
       }

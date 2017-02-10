@@ -53,25 +53,15 @@ function updatePassword(formNewPassword, id){
         position: 'center'
 			});
     }else{
-      $$.getJSON(apiUrl + 'user.php', function (data) {
-				storage.setItem('userAll', JSON.stringify(data));
-			}).done(function() {
-        iziToast.success({
-      		message: objeto.message,
-          backgroundColor: '#EFEFEF',
-          titleColor: 'blue',
-          timeout: 2500,
-          animateInside: true,
-          position: 'center'
-  			});
-      }).always(function() {
-        var usersData = JSON.parse(storage.getItem('userAll'));
-        var index = usersData.map(function(e) { return e.id; }).indexOf(id);
-        var newUser = usersData[index];
-        storage.setItem('user', newUser);
-        setProfile();
+      iziToast.success({
+    		message: objeto.message,
+        backgroundColor: '#EFEFEF',
+        titleColor: 'blue',
+        timeout: 2500,
+        animateInside: true,
+        position: 'center'
+		  });
         profileView.router.back();
-      });
     }
   });
 }
